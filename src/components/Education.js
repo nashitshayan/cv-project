@@ -58,7 +58,7 @@ class Education extends Component {
 		};
 		const editableSection = (
 			<form className='form' onSubmit={this.handleFormSave}>
-				<div>
+				{/* <div>
 					<label>
 						School name
 						<input
@@ -127,7 +127,7 @@ class Education extends Component {
 							className='class12'
 						/>
 					</label>
-				</div>
+				</div> */}
 				<div>
 					<label>
 						College name
