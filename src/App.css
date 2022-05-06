@@ -32,7 +32,8 @@ h1 {
 }
 
 .form {
-	border-bottom: 4px solid var(--clr--primary);
+	border-bottom: 8px solid var(--clr--primary);
+	border-radius: 6px;
 	padding: 2em;
 	min-height: 12em;
 }
@@ -41,11 +42,16 @@ label {
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 1em;
+	font-size: 1.1rem;
 }
+
 input,
 textarea {
 	width: 60%;
 	padding: 0.5em;
+	border: 1px solid var(--clr--accent);
+	border-radius: 6px;
+	height: 2.5em;
 }
 @media only screen and (min-width: 700px) {
 	input,
@@ -67,9 +73,9 @@ button {
 	background-color: var(--clr--accent);
 	color: var(--clr--neutral);
 	border: none;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	border-radius: 4px;
-	padding: 0.5em 1em;
+	padding: 0.5em 1.5em;
 	cursor: pointer;
 }
 button:hover {
