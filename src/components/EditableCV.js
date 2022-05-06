@@ -7,10 +7,12 @@ class EditableCV extends Component {
 	render() {
 		return (
 			<>
-				<h1>CV Application</h1>
-				<GeneralInfo />
-				<Education />
-				<WorkExperience />
+				<header>CV Application</header>
+				<main>
+					<GeneralInfo />
+					<Education />
+					<WorkExperience />
+				</main>
 			</>
 		);
 	}

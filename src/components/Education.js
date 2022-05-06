@@ -130,7 +130,7 @@ class Education extends Component {
 				</div> */}
 				{/* <div> */}
 				<label>
-					College name
+					College :
 					<input
 						type='text'
 						placeholder='enter the school name'
@@ -138,21 +138,23 @@ class Education extends Component {
 						value={college.collegeName}
 						onChange={this.handleChange}
 						className='college'
+						required
 					/>
 				</label>
 				<label>
-					Passing Year
+					Graduated :
 					<input
-						type='text'
+						type='month'
 						placeholder='enter the passing year'
 						name='passingYear'
 						value={college.passingYear}
 						onChange={this.handleChange}
 						className='college'
+						required
 					/>
 				</label>
 				<label>
-					Course Name
+					Course :
 					<input
 						type='text'
 						placeholder='enter the course name'
@@ -160,10 +162,11 @@ class Education extends Component {
 						value={college.courseName}
 						onChange={this.handleChange}
 						className='college'
+						required
 					/>
 				</label>
 				<label>
-					Result
+					Result :
 					<input
 						type='text'
 						placeholder='enter the final result '
@@ -171,6 +174,7 @@ class Education extends Component {
 						value={college.result}
 						onChange={this.handleChange}
 						className='college'
+						required
 					/>
 				</label>
 				{/* </div> */}
@@ -179,7 +183,7 @@ class Education extends Component {
 		);
 		const displaySection = (
 			<div className='displaySection'>
-				<div>
+				{/* <div>
 					<div>School Name : {class10.schoolName}</div>
 					<div>Passing Year : {class10.passingYear}</div>
 					<div>CGPA : {class10.result}</div>
@@ -188,12 +192,20 @@ class Education extends Component {
 					<div>School Name : {class12.schoolName}</div>
 					<div>Passing Year : {class12.passingYear}</div>
 					<div>CGPA : {class12.result}</div>
-				</div>
+				</div> */}
 				<div>
-					<div>College Name : {college.collegeName}</div>
-					<div>Passing Year : {college.passingYear}</div>
-					<div>Course Name : {college.courseName}</div>
-					<div>CGPA : {college.result}</div>
+					<div className='displaySection--items'>
+						<div>College :</div> <div>{college.collegeName}</div>
+					</div>
+					<div className='displaySection--items'>
+						<div>Graduated :</div> <div>{college.passingYear}</div>
+					</div>
+					<div className='displaySection--items'>
+						<div>Course :</div> <div>{college.courseName}</div>
+					</div>
+					<div className='displaySection--items'>
+						<div>CGPA :</div> <div>{college.result}</div>
+					</div>
 				</div>
 				<button onClick={this.handleEdit}>Edit</button>
 			</div>

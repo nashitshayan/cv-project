@@ -3,13 +3,11 @@
 :root {
 	--clr--primary: #ccd5ae;
 	--clr--secondary: #faedcd;
-	--clr--accent: #d4a373;
+	--clr--accent: #d39658;
 	--clr--neutral: #fefae0;
 }
 .App {
 	text-align: center;
-	width: min(90%, 70.5em);
-	margin-inline: auto;
 }
 
 * {
@@ -21,22 +19,46 @@ body {
 	background-color: var(--clr--primary);
 }
 
-h1 {
+header {
 	font-family: 'Playfair Display', serif;
 	font-weight: 600;
+	font-size: 2.2rem;
+	background-color: var(--clr--neutral);
+	color: var(--clr--accent);
+	padding: 1em;
+	margin-bottom: 1em;
 }
-
+main {
+	width: min(90%, 70.5em);
+	margin-inline: auto;
+}
 .form,
 .displaySection {
 	background-color: var(--clr--secondary);
+	border-bottom: 12px solid var(--clr--primary);
+	border-radius: 6px;
+	padding: 3em;
+	max-width: 55em;
+	margin-inline: auto;
 }
 
-.form {
-	border-bottom: 8px solid var(--clr--primary);
-	border-radius: 6px;
-	padding: 2em;
-	min-height: 12em;
+.displaySection--items {
+	font-size: 1.3rem;
+	margin-bottom: 1em;
+	text-align: left;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	max-width: 25em;
+	margin-inline: auto;
 }
+.displaySection--items > div:first-child {
+	width: 7em;
+}
+.displaySection--items > div:last-child {
+	word-break: break-all;
+}
+
 label {
 	display: flex;
 	align-items: center;
@@ -48,17 +70,23 @@ label {
 input,
 textarea {
 	width: 60%;
-	padding: 0.5em;
+	padding: 0.75em;
 	border: 1px solid var(--clr--accent);
 	border-radius: 6px;
 	height: 2.5em;
+	font-size: 1.1rem;
 }
+textarea {
+	height: 8em;
+}
+
 @media only screen and (min-width: 700px) {
 	input,
 	textarea {
 		width: 80%;
 	}
 }
+
 @media only screen and (max-width: 350px) {
 	label {
 		flex-direction: column;
@@ -79,6 +107,18 @@ button {
 	cursor: pointer;
 }
 button:hover {
-	background-color: #da924a;
+	background-color: #db832b;
 	font-weight: bold;
+}
+
+footer {
+	margin-top: 1em;
+	font-size: 1.2rem;
+	padding: 2em;
+	background-color: var(--clr--neutral);
+}
+
+footer > a {
+	text-decoration: none;
+	color: var(--clr--accent);
 }

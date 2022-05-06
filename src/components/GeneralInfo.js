@@ -36,16 +36,11 @@ class GeneralInfo extends Component {
 	};
 
 	render() {
-		const basic = {
-			backgroundColor: '#ddbea9',
-			padding: '2rem',
-		};
-
 		const { name, email, phoneNum, isEdit } = this.state;
 		const editableSection = (
 			<form onSubmit={this.handleFormSave} className='form'>
 				<label>
-					Name
+					Name :
 					<input
 						name='name'
 						type='text'
@@ -53,10 +48,11 @@ class GeneralInfo extends Component {
 						value={name}
 						onChange={this.handleChange}
 						className='form-name'
+						required
 					/>
 				</label>
 				<label>
-					Email
+					Email :
 					<input
 						name='email'
 						type='email'
@@ -64,17 +60,19 @@ class GeneralInfo extends Component {
 						value={email}
 						onChange={this.handleChange}
 						className='form-email'
+						required
 					/>
 				</label>
 				<label>
-					Phone Number
+					Phone Number :
 					<input
 						name='phoneNum'
 						type='text'
-						placeholder='Enter your phone number'
+						placeholder='Enter your phone number (add country code; eg: +91-xxx-xxx-xxxx)'
 						value={phoneNum}
 						onChange={this.handleChange}
 						className='form-phone'
+						required
 					/>
 				</label>
 				<button type='Submit' className='form-btn'>
@@ -85,9 +83,15 @@ class GeneralInfo extends Component {
 
 		const displaySection = (
 			<div className='generalInfo displaySection'>
-				<div className='generalInfo--name'>{name}</div>
-				<div className='generalInfo--email'>{email}</div>
-				<div className='generalInfo--phone'>{phoneNum}</div>
+				<div className='displaySection--items'>
+					<div>Name :</div> <div>{name}</div>
+				</div>
+				<div className='displaySection--items'>
+					<div>Email :</div> <div>{email}</div>
+				</div>
+				<div className='displaySection--items'>
+					<div>Phone :</div> <div>{phoneNum}</div>
+				</div>
 				<button onClick={this.handleFormEdit}>Edit</button>
 			</div>
 		);
