@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/nashitshayan.github.io/cv-project/static/css/main.7e54e0fe.css",
-    "main.js": "/nashitshayan.github.io/cv-project/static/js/main.176d9f73.js",
-    "static/js/787.34a20539.chunk.js": "/nashitshayan.github.io/cv-project/static/js/787.34a20539.chunk.js",
-    "index.html": "/nashitshayan.github.io/cv-project/index.html",
-    "main.7e54e0fe.css.map": "/nashitshayan.github.io/cv-project/static/css/main.7e54e0fe.css.map",
-    "main.176d9f73.js.map": "/nashitshayan.github.io/cv-project/static/js/main.176d9f73.js.map",
-    "787.34a20539.chunk.js.map": "/nashitshayan.github.io/cv-project/static/js/787.34a20539.chunk.js.map"
+    "main.css": "/cv-project/static/css/main.7e54e0fe.css",
+    "main.js": "/cv-project/static/js/main.1461c443.js",
+    "static/js/787.34a20539.chunk.js": "/cv-project/static/js/787.34a20539.chunk.js",
+    "index.html": "/cv-project/index.html",
+    "main.7e54e0fe.css.map": "/cv-project/static/css/main.7e54e0fe.css.map",
+    "main.1461c443.js.map": "/cv-project/static/js/main.1461c443.js.map",
+    "787.34a20539.chunk.js.map": "/cv-project/static/js/787.34a20539.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7e54e0fe.css",
-    "static/js/main.176d9f73.js"
+    "static/js/main.1461c443.js"
   ]
 }
