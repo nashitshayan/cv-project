@@ -40,7 +40,7 @@ class WorkExperience extends Component {
 			this.state;
 
 		const editableSection = (
-			<form onSubmit={this.handleFormSave}>
+			<form className='form' onSubmit={this.handleFormSave}>
 				<label>
 					Company Name
 					<input
@@ -55,7 +55,7 @@ class WorkExperience extends Component {
 					Position Title
 					<input
 						type='text'
-						placeholder='enter the Position Title'
+						placeholder='enter the position title'
 						name='positionTitle'
 						value={positionTitle}
 						onChange={this.handleChange}
@@ -83,7 +83,7 @@ class WorkExperience extends Component {
 				<label>
 					Summary
 					<textarea
-						placeholder='enter the Summary'
+						placeholder='enter the summary'
 						name='summary'
 						value={summary}
 						onChange={this.handleChange}
@@ -93,7 +93,7 @@ class WorkExperience extends Component {
 			</form>
 		);
 		const displaySection = (
-			<div>
+			<div className='displaySection'>
 				<div>Company Name: {companyName}</div>
 				<div>Position Title : {positionTitle}</div>
 				<div>Worked From : {dateFrom}</div>
@@ -102,11 +102,8 @@ class WorkExperience extends Component {
 				<button onClick={this.handleEdit}>Edit</button>
 			</div>
 		);
-		const basic = {
-			backgroundColor: '#b7b7a4',
-			padding: '2rem',
-		};
-		return <div style={basic}>{isEdit ? editableSection : displaySection}</div>;
+
+		return <div>{isEdit ? editableSection : displaySection}</div>;
 	}
 }
 

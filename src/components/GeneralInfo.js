@@ -84,7 +84,7 @@ class GeneralInfo extends Component {
 		);
 
 		const displaySection = (
-			<div className='generalInfo'>
+			<div className='generalInfo displaySection'>
 				<div className='generalInfo--name'>{name}</div>
 				<div className='generalInfo--email'>{email}</div>
 				<div className='generalInfo--phone'>{phoneNum}</div>
@@ -92,7 +92,7 @@ class GeneralInfo extends Component {
 			</div>
 		);
 
-		return <div style={basic}>{isEdit ? editableSection : displaySection}</div>;
+		return <div>{isEdit ? editableSection : displaySection}</div>;
 	}
 }
 

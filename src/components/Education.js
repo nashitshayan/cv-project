@@ -52,10 +52,10 @@ class Education extends Component {
 
 	render() {
 		const { class10, class12, college, isEdit } = this.state;
-		const basic = {
-			backgroundColor: '#ffe8d6',
-			padding: '2rem',
-		};
+		// const basic = {
+		// 	backgroundColor: '#ffe8d6',
+		// 	padding: '2rem',
+		// };
 		const editableSection = (
 			<form className='form' onSubmit={this.handleFormSave}>
 				{/* <div>
@@ -128,57 +128,57 @@ class Education extends Component {
 						/>
 					</label>
 				</div> */}
-				<div>
-					<label>
-						College name
-						<input
-							type='text'
-							placeholder='enter the school name'
-							name='collegeName'
-							value={college.collegeName}
-							onChange={this.handleChange}
-							className='college'
-						/>
-					</label>
-					<label>
-						Passing Year
-						<input
-							type='text'
-							placeholder='enter the passing year'
-							name='passingYear'
-							value={college.passingYear}
-							onChange={this.handleChange}
-							className='college'
-						/>
-					</label>
-					<label>
-						Course Name
-						<input
-							type='text'
-							placeholder='enter the passing year'
-							name='courseName'
-							value={college.courseName}
-							onChange={this.handleChange}
-							className='college'
-						/>
-					</label>
-					<label>
-						Result
-						<input
-							type='text'
-							placeholder='enter the final result '
-							name='result'
-							value={college.result}
-							onChange={this.handleChange}
-							className='college'
-						/>
-					</label>
-				</div>
+				{/* <div> */}
+				<label>
+					College name
+					<input
+						type='text'
+						placeholder='enter the school name'
+						name='collegeName'
+						value={college.collegeName}
+						onChange={this.handleChange}
+						className='college'
+					/>
+				</label>
+				<label>
+					Passing Year
+					<input
+						type='text'
+						placeholder='enter the passing year'
+						name='passingYear'
+						value={college.passingYear}
+						onChange={this.handleChange}
+						className='college'
+					/>
+				</label>
+				<label>
+					Course Name
+					<input
+						type='text'
+						placeholder='enter the course name'
+						name='courseName'
+						value={college.courseName}
+						onChange={this.handleChange}
+						className='college'
+					/>
+				</label>
+				<label>
+					Result
+					<input
+						type='text'
+						placeholder='enter the final result '
+						name='result'
+						value={college.result}
+						onChange={this.handleChange}
+						className='college'
+					/>
+				</label>
+				{/* </div> */}
 				<button>Save</button>
 			</form>
 		);
 		const displaySection = (
-			<div>
+			<div className='displaySection'>
 				<div>
 					<div>School Name : {class10.schoolName}</div>
 					<div>Passing Year : {class10.passingYear}</div>
@@ -198,7 +198,7 @@ class Education extends Component {
 				<button onClick={this.handleEdit}>Edit</button>
 			</div>
 		);
-		return <div style={basic}>{isEdit ? editableSection : displaySection}</div>;
+		return <div>{isEdit ? editableSection : displaySection}</div>;
 	}
 }
 

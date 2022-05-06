@@ -1,39 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;900&family=Roboto:wght@300;400&display=swap');
+
+:root {
+	--clr--primary: #ccd5ae;
+	--clr--secondary: #faedcd;
+	--clr--accent: #d4a373;
+	--clr--neutral: #fefae0;
+}
 .App {
 	text-align: center;
-	background-color: #8ecae6;
+	width: min(90%, 70.5em);
+	margin-inline: auto;
 }
 
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	background-color: var(--clr--primary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
+h1 {
+	font-family: 'Playfair Display', serif;
+	font-weight: 600;
 }
 
-.App-header {
-	background-color: #282c34;
-	min-height: 100vh;
+.form,
+.displaySection {
+	background-color: var(--clr--secondary);
+}
+
+.form {
+	border-bottom: 4px solid var(--clr--primary);
+	padding: 2em;
+	min-height: 12em;
+}
+label {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+	justify-content: space-between;
+	margin-bottom: 1em;
 }
-
-.App-link {
-	color: #61dafb;
+input,
+textarea {
+	width: 60%;
+	padding: 0.5em;
 }
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
+@media only screen and (min-width: 700px) {
+	input,
+	textarea {
+		width: 80%;
 	}
-	to {
-		transform: rotate(360deg);
+}
+@media only screen and (max-width: 350px) {
+	label {
+		flex-direction: column;
 	}
+	input,
+	textarea {
+		width: 100%;
+		margin: 0.5em 0;
+	}
+}
+button {
+	background-color: var(--clr--accent);
+	color: var(--clr--neutral);
+	border: none;
+	font-size: 1.2rem;
+	border-radius: 4px;
+	padding: 0.5em 1em;
+	cursor: pointer;
+}
+button:hover {
+	background-color: #da924a;
+	font-weight: bold;
 }
