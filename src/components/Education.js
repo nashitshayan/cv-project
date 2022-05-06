@@ -210,7 +210,12 @@ class Education extends Component {
 				<button onClick={this.handleEdit}>Edit</button>
 			</div>
 		);
-		return <div>{isEdit ? editableSection : displaySection}</div>;
+		return (
+			<div>
+				<h2 className='sectionTitle'>Education</h2>
+				{isEdit ? editableSection : displaySection}
+			</div>
+		);
 	}
 }
 

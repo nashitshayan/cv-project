@@ -26,11 +26,15 @@ header {
 	background-color: var(--clr--neutral);
 	color: var(--clr--accent);
 	padding: 1em;
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
 }
 main {
 	width: min(90%, 70.5em);
 	margin-inline: auto;
+}
+.sectionTitle {
+	color: #222;
+	text-decoration: underline;
 }
 .form,
 .displaySection {
@@ -40,6 +44,7 @@ main {
 	padding: 3em;
 	max-width: 55em;
 	margin-inline: auto;
+	margin-bottom: 3em;
 }
 
 .displaySection--items {

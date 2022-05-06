@@ -96,7 +96,12 @@ class GeneralInfo extends Component {
 			</div>
 		);
 
-		return <div>{isEdit ? editableSection : displaySection}</div>;
+		return (
+			<div>
+				<h2 className='sectionTitle'>Personal Information</h2>
+				{isEdit ? editableSection : displaySection}
+			</div>
+		);
 	}
 }
 

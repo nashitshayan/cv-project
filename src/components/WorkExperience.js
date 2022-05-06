@@ -118,7 +118,12 @@ class WorkExperience extends Component {
 			</div>
 		);
 
-		return <div>{isEdit ? editableSection : displaySection}</div>;
+		return (
+			<div>
+				<h2 className='sectionTitle'>Work Experience</h2>
+				{isEdit ? editableSection : displaySection}
+			</div>
+		);
 	}
 }
 
