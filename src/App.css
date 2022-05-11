@@ -1,37 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;900&family=Roboto:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 :root {
-	--clr--primary: #ccd5ae;
-	--clr--secondary: #faedcd;
-	--clr--accent: #d39658;
-	--clr--neutral: #fefae0;
+	--clr--primary: #1d3557;
+	--clr--secondary: #457b9d;
+	--clr--accent: #a8dadc;
+	--clr--neutral: #f1faee;
 }
-.App {
-	text-align: center;
-}
-
 * {
 	box-sizing: border-box;
 }
+
 body {
 	margin: 0;
-	font-family: 'Roboto', sans-serif;
-	background-color: var(--clr--primary);
-}
-
-header {
-	font-family: 'Playfair Display', serif;
-	font-weight: 600;
-	font-size: 2.2rem;
+	font-family: 'Lato', sans-serif;
 	background-color: var(--clr--neutral);
-	color: var(--clr--accent);
-	padding: 1em;
-	margin-bottom: 1.5em;
 }
-main {
+.App {
 	width: min(90%, 70.5em);
 	margin-inline: auto;
 }
+
+.outer-wrapper {
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+	/* border: 1px solid black; */
+}
+aside {
+	background-color: var(--clr--primary);
+	color: var(--clr--neutral);
+	grid-column: 1/5;
+	grid-row: 1/-1;
+}
+main {
+	background-color: var(--clr--accent);
+	color: var(--clr--primary);
+	grid-column: 5/13;
+	grid-row: 1/-1;
+}
+
+/* Header Section */
+header {
+	font-weight: 600;
+	font-size: 1.1rem;
+	background-color: var(--clr--secondary);
+	color: var(--clr--neutral);
+	padding: 1em;
+	/* margin: 1em 0; */
+}
+.header--row {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 0.5em;
+}
+.header--row > label {
+	width: 4em;
+	padding: 0.5em 1em 0.5em 0;
+}
+
+#header--input-name,
+#header--input-title {
+	padding: 0.5em;
+	border: 1px solid var(--clr--accent);
+	border-radius: 8px;
+	font-size: 1.1rem;
+}
+#header--input-name {
+	width: 40%;
+}
+#header--input-title {
+	width: 30%;
+}
+
 .sectionTitle {
 	color: #222;
 	text-decoration: underline;
@@ -64,6 +106,7 @@ main {
 	word-break: break-all;
 }
 
+/* 
 label {
 	display: flex;
 	align-items: center;
@@ -101,7 +144,7 @@ textarea {
 		width: 100%;
 		margin: 0.5em 0;
 	}
-}
+} */
 button {
 	background-color: var(--clr--accent);
 	color: var(--clr--neutral);
