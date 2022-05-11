@@ -43,8 +43,11 @@ function App() {
 	const [isEdit, setIsEdit] = useState(true);
 
 	const changeHandler = (e) => {
-		console.log('change');
-		const { name, value, className } = e.target;
+		let { name, value, className } = e.target;
+		// if (type === 'date') {
+		// 	value = convertDate(value);
+		// 	console.log(value);
+		// }
 		setResumeData((prevData) => ({
 			...prevData,
 			[className]: {

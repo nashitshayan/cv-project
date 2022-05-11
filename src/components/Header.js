@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Header({ name, title, onChangeHandler }) {
+function Header({ name, title, changeHandler }) {
 	// console.log(changeHandler);
 	return (
 		<header>
-			<div className='header--row'>
+			<div className='input-row'>
 				<label htmlFor='header--input-name'>Name:</label>
 				<input
 					type='text'
@@ -13,11 +13,11 @@ function Header({ name, title, onChangeHandler }) {
 					id='header--input-name'
 					name='name'
 					value={name}
-					onChange={onChangeHandler}
+					onChange={changeHandler}
 					required
 				/>
 			</div>
-			<div className='header--row'>
+			<div className='input-row'>
 				<label htmlFor='header--input-title'>Title:</label>
 				<input
 					type='text'
@@ -26,7 +26,7 @@ function Header({ name, title, onChangeHandler }) {
 					id='header--input-title'
 					name='title'
 					value={title}
-					onChange={onChangeHandler}
+					onChange={changeHandler}
 					required
 				/>
 			</div>

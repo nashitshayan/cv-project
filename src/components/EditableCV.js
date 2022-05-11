@@ -11,20 +11,33 @@ import WorkExperience from './WorkExperience';
 function EditableCV({ data, changeHandler, submitHandler, editHandler }) {
 	return (
 		<>
-			<Header
-				name={data.header.name}
-				title={data.header.title}
-				onChangeHandler={changeHandler}
-			/>
 			<div className='outer-wrapper'>
+				<Header
+					name={data.header.name}
+					title={data.header.title}
+					changeHandler={changeHandler}
+				/>
+
 				<aside>
-					<PersonalInfo personalData={data.personalInfo} />
-					<Skills />
+					<PersonalInfo
+						personalData={data.personalInfo}
+						changeHandler={changeHandler}
+					/>
+					<Skills skillsData={data.skills} changeHandler={changeHandler} />
 				</aside>
 				<main>
-					<Objective />
-					<Education />
-					<Experience />
+					<Objective
+						objectiveData={data.objective}
+						changeHandler={changeHandler}
+					/>
+					<Education
+						educationData={data.education}
+						changeHandler={changeHandler}
+					/>
+					<Experience
+						experienceData={data.experience}
+						changeHandler={changeHandler}
+					/>
 				</main>
 			</div>
 		</>
