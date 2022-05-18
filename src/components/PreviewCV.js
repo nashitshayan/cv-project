@@ -13,33 +13,41 @@ function convertDate(dateString) {
 		day: 'numeric',
 	});
 }
-function PreviewCV({ data, changeHandler, submitHandler, editHandler }) {
+function PreviewCV({
+	header,
+	personalInfo,
+	skills,
+	objective,
+	education,
+	experience,
+}) {
 	return (
 		<>
 			<div className='outer-wrapper'>
 				<header>
-					<h1>{data.header.name || 'Enter Name'} </h1>
-					<h2>{data.header.title || 'Enter Title'}</h2>
+					<h1>{header.name || 'Enter Name'} </h1>
+					<h2>{header.title || 'Enter Title'}</h2>
 				</header>
 
 				<aside>
 					{/*	<Skills /> */}
 					<ul className='icon'>
-						{Object.getOwnPropertyNames(data.personalInfo).map(
-							(item, index) => {
-								console.log(item);
-								return (
-									<li key={index} className={icons[index]}>
-										{item === 'dateOfBirth'
-											? convertDate(data.personalInfo[item])
-											: data.personalInfo[item]}
-									</li>
-								);
-							},
-						)}
+						{Object.getOwnPropertyNames(personalInfo).map((item, index) => {
+							return (
+								<li key={index} className={icons[index]}>
+									{(item === 'dateOfBirth'
+										? convertDate(personalInfo[item])
+										: personalInfo[item]) || `Enter ${item}`}
+								</li>
+							);
+						})}
 					</ul>
 				</aside>
 				<main>
+					<div className='objectiveDisplay'>
+						<h3>OBJECTIVE</h3>
+						<p className='greytext'>{objective || 'enter objective'}</p>
+					</div>
 					{/* <Objective />
 				<Education />
 				<Experience /> */}

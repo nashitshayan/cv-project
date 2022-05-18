@@ -3,40 +3,51 @@ import Header from './Header';
 import PersonalInfo from './PersonalInfo';
 import Skills from './Skills';
 import Objective from './Objective';
-import GeneralInfo from './GeneralInfo';
 import Education from './Education';
 import Experience from './Experience';
-import WorkExperience from './WorkExperience';
 
-function EditableCV({ data, changeHandler, submitHandler, editHandler }) {
+function EditableCV({
+	header,
+	personalInfo,
+	skills,
+	objective,
+	education,
+	experience,
+	onHeaderChange,
+	onPersonalInfoChange,
+	onSkillsChange,
+	onObjectiveChange,
+	onEducationChange,
+	onExperienceChange,
+}) {
 	return (
 		<>
 			<div className='outer-wrapper'>
 				<Header
-					name={data.header.name}
-					title={data.header.title}
-					changeHandler={changeHandler}
+					name={header.name}
+					title={header.title}
+					changeHandler={onHeaderChange}
 				/>
 
 				<aside>
 					<PersonalInfo
-						personalData={data.personalInfo}
-						changeHandler={changeHandler}
+						personalData={personalInfo}
+						changeHandler={onPersonalInfoChange}
 					/>
-					<Skills skillsData={data.skills} changeHandler={changeHandler} />
+					<Skills skillsData={skills} changeHandler={onSkillsChange} />
 				</aside>
 				<main>
 					<Objective
-						objectiveData={data.objective}
-						changeHandler={changeHandler}
+						objectiveData={objective}
+						changeHandler={onObjectiveChange}
 					/>
 					<Education
-						educationData={data.education}
-						changeHandler={changeHandler}
+						educationData={education}
+						changeHandler={onEducationChange}
 					/>
 					<Experience
-						experienceData={data.experience}
-						changeHandler={changeHandler}
+						experienceData={experience}
+						changeHandler={onExperienceChange}
 					/>
 				</main>
 			</div>
