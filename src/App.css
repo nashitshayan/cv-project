@@ -13,10 +13,16 @@
 body {
 	margin: 0;
 	font-family: 'Lato', sans-serif;
-	background-color: var(--clr--neutral);
+	background-color: #222;
+}
+.greytext {
+	color: rgb(110, 110, 110);
+}
+.faded {
+	opacity: 80%;
 }
 .App {
-	width: min(90%, 70.5em);
+	width: min(90%, 50em);
 	margin-inline: auto;
 }
 
@@ -25,6 +31,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(12, 1fr);
+	/* box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); */
 	/* border: 1px solid black; */
 }
 aside {
@@ -35,10 +42,12 @@ aside {
 	padding: 0.5em;
 }
 main {
-	background-color: var(--clr--accent);
+	/* background-color: var(--clr--neutral); */
+	background-color: rgb(238, 238, 238);
 	color: var(--clr--primary);
 	grid-column: 5/13;
 	grid-row: 3/-1;
+	padding: 0 1em;
 }
 
 /* Header Section */
@@ -68,7 +77,8 @@ header input {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0.5em;
+	margin-bottom: 0.5em;
+	/* padding: 0.5em; */
 }
 /* #header--input-name {
 	width: 40%;
@@ -79,8 +89,9 @@ header input {
 
 /* Personal Data */
 
-.personalData {
-	/* background-color: grey; */
+.asideSection {
+	padding: 0.5em;
+	/* backsground-color: grey; */
 }
 .personalData label {
 	width: 5em;
@@ -92,6 +103,17 @@ header input {
 	border-radius: 6px;
 	border: 1px solid var(--clr--primary);
 }
+
+.objectiveData textarea {
+	width: 80%;
+	font-size: 1.1rem;
+	padding: 0.5em;
+	margin: 0 auto;
+	height: 7em;
+	resize: none;
+	border-radius: 4px;
+}
+
 .sectionTitle {
 	color: #222;
 	text-decoration: underline;
