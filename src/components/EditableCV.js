@@ -16,9 +16,12 @@ function EditableCV({
 	onHeaderChange,
 	onPersonalInfoChange,
 	onSkillsChange,
+	addSkill,
+	addSkillName,
 	onObjectiveChange,
 	onEducationChange,
 	onExperienceChange,
+	addExperience,
 }) {
 	return (
 		<>
@@ -34,7 +37,12 @@ function EditableCV({
 						personalData={personalInfo}
 						changeHandler={onPersonalInfoChange}
 					/>
-					<Skills skillsData={skills} changeHandler={onSkillsChange} />
+					<Skills
+						skillsData={skills}
+						changeHandler={onSkillsChange}
+						addSkill={addSkill}
+						addSkillName={addSkillName}
+					/>
 				</aside>
 				<main>
 					<Objective
