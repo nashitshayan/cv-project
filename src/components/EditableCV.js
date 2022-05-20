@@ -9,15 +9,17 @@ import Experience from './Experience';
 function EditableCV({
 	header,
 	personalInfo,
-	skills,
+	skillsData,
 	objective,
 	education,
 	experience,
 	onHeaderChange,
 	onPersonalInfoChange,
 	onSkillsChange,
+	addSkillCategory,
+	deleteSkillCategory,
 	addSkill,
-	addSkillName,
+	deleteSkill,
 	onObjectiveChange,
 	onEducationChange,
 	onExperienceChange,
@@ -38,10 +40,12 @@ function EditableCV({
 						changeHandler={onPersonalInfoChange}
 					/>
 					<Skills
-						skillsData={skills}
+						skillsData={skillsData}
 						changeHandler={onSkillsChange}
+						addSkillCategory={addSkillCategory}
+						deleteSkillCategory={deleteSkillCategory}
 						addSkill={addSkill}
-						addSkillName={addSkillName}
+						deleteSkill={deleteSkill}
 					/>
 				</aside>
 				<main>

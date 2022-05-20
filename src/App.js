@@ -3,7 +3,6 @@ import { useState } from 'react';
 import EditableCV from './components/EditableCV';
 import PreviewCV from './components/PreviewCV';
 import Footer from './components/Footer';
-import { v4 as uuidv4 } from 'uuid';
 //const [resumeData, setResumeData] = useState({
 // 	// header: {
 // 	// 	name: '',
@@ -58,13 +57,11 @@ function App() {
 		website: '',
 		location: '',
 	});
-	const [skills, setSkills] = useState([
+	const [skillsData, setSkillsData] = useState([
 		{
-			idT: uuidv4(),
-			skillTitle: '',
-			skillNames: [
+			skillCategory: '',
+			skills: [
 				{
-					idS: uuidv4(),
 					skillName: '',
 				},
 			],
@@ -83,7 +80,6 @@ function App() {
 	]);
 	const [experience, setExperience] = useState([
 		{
-			id: uuidv4(),
 			company: '',
 			title: '',
 			startDate: '',
@@ -108,75 +104,119 @@ function App() {
 			[name]: value,
 		}));
 	};
-	const onSkillsChange = (e, idT, idS) => {
-		let { name, value, className } = e.target;
-		let property = className === 'skillNames' ? className : name;
-		setSkills((prevSkills) => {
-			//console.log('from skillNames');
-			const newSkills = prevSkills.map((skillItem) => {
-				if (skillItem.idT === idT) {
-					//console.log('match', skillItem.skillNames, value);
-					return {
-						...skillItem,
-						[property]:
-							className === 'skillNames'
-								? skillItem.skillNames.map((skillNameItem) => {
-										console.log(skillNameItem.idS);
-										if (skillNameItem.idS === idS) {
-											return {
-												...skillNameItem,
-												[name]: value,
-											};
-										}
-										return skillNameItem;
-								  })
-								: value,
-					};
-				}
 
-				//	console.log('no match');
-				return skillItem;
-			});
-			//console.log('newskills', newSkills);
-			return newSkills;
+	const onSkillsChange = (e, skillCategoryID, skillID) => {
+		let { name, value, className } = e.target;
+		let property = className === 'skills' ? className : name;
+		setSkillsData((oldSkillsData) => {
+			//console.log('from skillNames');
+			const newSkillsData = oldSkillsData.map(
+				(skillCategory, skillCategoryIndex) => {
+					if (skillCategoryIndex === skillCategoryID) {
+						//	console.log('match', value);
+						return {
+							...skillCategory,
+							[property]:
+								className === 'skills'
+									? skillCategory.skills.map((skill, skillIndex) => {
+											//	console.log(skill);
+											if (skillIndex === skillID) {
+												return {
+													...skill,
+													[name]: value,
+												};
+											}
+											return skill;
+									  })
+									: value,
+						};
+					}
+
+					//	console.log('no match');
+					return skillCategory;
+				},
+			);
+			//	console.log('newskills', newSkillsData);
+			return newSkillsData;
 		});
 	};
-	const addSkill = () => {
-		setSkills((prevSkills) => [
-			...prevSkills,
+	/**
+	 * const [skillsData, setSkills] = useState([
+		{
+			idT: uuidv4(),
+			category: '',
+			skills: [
+				{
+					idS: uuidv4(),
+					skillName: '',
+				},
+			],
+		},
+	]);
+	 */
+	const addSkillCategory = () => {
+		setSkillsData((oldSkillsData) => [
+			...oldSkillsData,
 			{
-				idT: uuidv4(),
-				skillTitle: '',
-				skillNames: [
+				title: '',
+				skills: [
 					{
-						idS: uuidv4(),
 						skillName: '',
 					},
 				],
 			},
 		]);
 	};
-	const addSkillName = (e, id) => {
-		setSkills((prevSkills) => {
-			const newSkillName = prevSkills.map((skillItem) => {
-				if (skillItem.idT === id)
-					//if it is the object we're dealing with
-					return {
-						...skillItem,
-						skillNames: [
-							...skillItem.skillNames, //copy existing skill names
-							{
-								idS: uuidv4(),
-								skillName: '',
-							}, //add new skill name object
-						],
-					};
-				return skillItem; //otherwise return back rest of the skill objects
-			});
-			console.log(newSkillName);
-			return newSkillName;
+	const deleteSkillCategory = (e, skillCategoryID) => {
+		setSkillsData((oldSkillsData) => {
+			const newSkillsData = oldSkillsData.filter(
+				(skillCategory, skillCategoryIndex) =>
+					skillCategoryIndex !== skillCategoryID,
+			);
+			return newSkillsData;
 		});
 	};
+	const addSkill = (e, skillCategoryID) => {
+		setSkillsData((oldSkillsData) => {
+			const newSkillsData = oldSkillsData.map(
+				(skillCategory, skillCategoryIndex) => {
+					if (skillCategoryIndex === skillCategoryID)
+						//if it is the object we're dealing with
+						return {
+							...skillCategory,
+							skills: [
+								...skillCategory.skills, //copy existing skill names
+								{
+									skillName: '',
+								}, //add new skill name object
+							],
+						};
+					return skillCategory; //otherwise return back rest of the skill objects
+				},
+			);
+			//console.log(newSkillName);
+			return newSkillsData;
+		});
+	};
+
+	const deleteSkill = (e, skillCategoryID, skillID) => {
+		setSkillsData((oldSkillsData) => {
+			const newSkillsData = oldSkillsData.map(
+				(skillCategory, skillCategoryIndex) => {
+					if (skillCategoryIndex === skillCategoryID)
+						return {
+							...skillCategory,
+							skills: skillCategory.skills.filter(
+								(skill, skillIndex) => skillID !== skillIndex,
+							),
+						};
+					return skillCategory;
+				},
+			);
+			return newSkillsData;
+		});
+	};
+
 	const onObjectiveChange = (e) => {
 		let { value } = e.target;
 		setObjective(value);
@@ -200,7 +240,6 @@ function App() {
 		setExperience((prevExperience) => [
 			...prevExperience,
 			{
-				id: uuidv4(),
 				company: '',
 				title: '',
 				startDate: '',
@@ -246,22 +285,28 @@ function App() {
 
 	return (
 		<div className='App'>
-			<button onClick={editHandler}>Edit</button>
-			<button onClick={submitHandler}>Preview</button>
+			<button onClick={editHandler} className='btn-cv-toggle'>
+				Edit
+			</button>
+			<button onClick={submitHandler} className='btn-cv-toggle'>
+				Preview
+			</button>
 
 			{isEdit ? (
 				<EditableCV
 					header={header}
 					personalInfo={personalInfo}
-					skills={skills}
+					skillsData={skillsData}
 					objective={objective}
 					education={education}
 					experience={experience}
 					onHeaderChange={onHeaderChange}
 					onPersonalInfoChange={onPersonalInfoChange}
 					onSkillsChange={onSkillsChange}
+					addSkillCategory={addSkillCategory}
+					deleteSkillCategory={deleteSkillCategory}
 					addSkill={addSkill}
-					addSkillName={addSkillName}
+					deleteSkill={deleteSkill}
 					onObjectiveChange={onObjectiveChange}
 					onEducationChange={onEducationChange}
 					onExperienceChange={onExperienceChange}
@@ -271,7 +316,7 @@ function App() {
 				<PreviewCV
 					header={header}
 					personalInfo={personalInfo}
-					skills={skills}
+					skillsData={skillsData}
 					objective={objective}
 					education={education}
 					experience={experience}

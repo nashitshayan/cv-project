@@ -16,7 +16,7 @@ function convertDate(dateString) {
 function PreviewCV({
 	header,
 	personalInfo,
-	skills,
+	skillsData,
 	objective,
 	education,
 	experience,
@@ -30,7 +30,6 @@ function PreviewCV({
 				</header>
 
 				<aside>
-					{/*	<Skills /> */}
 					<ul className='icon'>
 						{Object.getOwnPropertyNames(personalInfo).map((item, index) => {
 							return (
@@ -42,6 +41,23 @@ function PreviewCV({
 							);
 						})}
 					</ul>
+					<hr />
+					<div className='skillsDisplay'>
+						<h3>SKILLS</h3>
+
+						{skillsData.map((skillCategoryItem, skillCategoryIndex) => {
+							return (
+								<div key={skillCategoryIndex}>
+									<li>{skillCategoryItem.skillCategory}</li>
+									<ul>
+										{skillCategoryItem.skills.map((skill, skillIndex) => (
+											<li key={skillIndex}>{skill.skillName}</li>
+										))}
+									</ul>
+								</div>
+							);
+						})}
+					</div>
 				</aside>
 				<main>
 					<div className='objectiveDisplay'>
