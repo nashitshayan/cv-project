@@ -101,11 +101,12 @@ header input {
 
 /* Personal Data */
 
-.asideSection {
+.section {
 	padding: 0.5em;
 	/* backsground-color: grey; */
 }
-.personalData label {
+.personalData label,
+.educationData label {
 	width: 5em;
 }
 .personalData input,
@@ -185,19 +186,65 @@ header input {
 	color: var(--clr--primary);
 	/* border: 1px solid var(--clr--neutral); */
 }
-.btn-cancel-skillCategory {
+.btn-cancel-skillCategory,
+.btn-cancel-education,
+.btn-cancel-experience {
 	cursor: pointer;
 	color: #cf4952;
 	margin-right: -0.25em;
 }
 .objectiveData textarea {
-	width: 80%;
+	width: 75%;
 	font-size: 1.1rem;
 	padding: 0.5em;
 	margin: 0 auto;
-	height: 7em;
+	height: 5em;
 	resize: none;
 	border-radius: 4px;
+}
+
+/* education */
+.educationData-input {
+	border: 2px solid var(--clr--primary);
+	padding: 1.5em 1.25em 1em 1.25em;
+	position: relative;
+}
+.educationData-input + .educationData-input {
+	margin-top: 1em;
+}
+/* .educationData-input * {
+	border: 1px solid var(--clr--primary);
+} */
+
+.educationData-input input[type='text'] {
+	width: 90%;
+}
+.education-input {
+	margin-bottom: 0.5em;
+}
+
+.educationData-input input,
+.experienceData-input input {
+	padding: 0.3em 0.5em;
+	border-radius: 4px;
+	border: 1px solid var(--clr--primary);
+}
+.educationData--input-dates {
+	display: flex;
+	justify-content: space-between;
+	gap: 1em;
+}
+.educationData--input-dates > div {
+	flex-basis: 100%;
+}
+.educationData--input-dates > div > label {
+	flex-basis: 40%;
+}
+
+.btn-cancel-education {
+	position: absolute;
+	top: 5px;
+	right: 5px;
 }
 
 .sectionTitle {

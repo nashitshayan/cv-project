@@ -22,8 +22,11 @@ function EditableCV({
 	deleteSkill,
 	onObjectiveChange,
 	onEducationChange,
+	addEducation,
+	deleteEducation,
 	onExperienceChange,
 	addExperience,
+	deleteExperience,
 }) {
 	return (
 		<>
@@ -56,10 +59,14 @@ function EditableCV({
 					<Education
 						educationData={education}
 						changeHandler={onEducationChange}
+						addEducation={addEducation}
+						deleteEducation={deleteEducation}
 					/>
 					<Experience
 						experienceData={experience}
 						changeHandler={onExperienceChange}
+						addExperience={addExperience}
+						deleteExperience={deleteExperience}
 					/>
 				</main>
 			</div>

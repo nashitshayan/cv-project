@@ -3,47 +3,7 @@ import { useState } from 'react';
 import EditableCV from './components/EditableCV';
 import PreviewCV from './components/PreviewCV';
 import Footer from './components/Footer';
-//const [resumeData, setResumeData] = useState({
-// 	// header: {
-// 	// 	name: '',
-// 	// 	title: '',
-// 	// },
-// 	// personalInfo: {
-// 	// 	gender: '',
-// 	// 	dateOfBirth: '',
-// 	// 	phone: '',
-// 	// 	email: '',
-// 	// 	website: '',
-// 	// 	location: '',
-// 	// },
-// 	// skills: [
-// 	// 	{
-// 	// 		skillTitle: '',
-// 	// 		skillNames: [],
-// 	// 	},
-// 	// ],
-// 	// objective: {
-// 	// 	summary: '',
-// 	// },
-// 	education: [
-// 		{
-// 			institute: '',
-// 			course: '',
-// 			startDate: '',
-// 			endDate: '',
-// 			result: '',
-// 		},
-// 	],
-// 	experience: [
-// 		{
-// 			company: '',
-// 			title: '',
-// 			startDate: '',
-// 			endDate: '',
-// 			summary: '',
-// 		},
-// 	],
-// });
+
 function App() {
 	const [header, setHeader] = useState({
 		name: '',
@@ -90,6 +50,7 @@ function App() {
 
 	const [isEdit, setIsEdit] = useState(true);
 
+	// event handlers
 	const onHeaderChange = (e) => {
 		let { name, value } = e.target;
 		setHeader((prevHeader) => ({
@@ -140,20 +101,7 @@ function App() {
 			return newSkillsData;
 		});
 	};
-	/**
-	 * const [skillsData, setSkills] = useState([
-		{
-			idT: uuidv4(),
-			category: '',
-			skills: [
-				{
-					idS: uuidv4(),
-					skillName: '',
-				},
-			],
-		},
-	]);
-	 */
+
 	const addSkillCategory = () => {
 		setSkillsData((oldSkillsData) => [
 			...oldSkillsData,
@@ -168,14 +116,14 @@ function App() {
 		]);
 	};
 	const deleteSkillCategory = (e, skillCategoryID) => {
-		setSkillsData((oldSkillsData) => {
-			const newSkillsData = oldSkillsData.filter(
+		setSkillsData((oldSkillsData) =>
+			oldSkillsData.filter(
 				(skillCategory, skillCategoryIndex) =>
 					skillCategoryIndex !== skillCategoryID,
-			);
-			return newSkillsData;
-		});
+			),
+		);
 	};
+
 	const addSkill = (e, skillCategoryID) => {
 		setSkillsData((oldSkillsData) => {
 			const newSkillsData = oldSkillsData.map(
@@ -221,24 +169,57 @@ function App() {
 		let { value } = e.target;
 		setObjective(value);
 	};
-	const onEducationChange = (e) => {
-		let { name, value } = e.target;
-	};
-	const onExperienceChange = (e, id) => {
-		let { name, value } = e.target;
 
-		setExperience((prevExperience) => {
-			const newExperience = prevExperience.map((experienceItem) => {
-				if (experienceItem.id === id)
-					return { ...experienceItem, [name]: value };
-				return experienceItem;
+	const onEducationChange = (e, educationID) => {
+		let { name, value } = e.target;
+		setEducation((oldEducation) => {
+			const newEducation = oldEducation.map((educationItem, educationIndex) => {
+				if (educationIndex === educationID)
+					return { ...educationItem, [name]: value };
+				return educationItem;
 			});
-			return [...prevExperience, newExperience];
+			return newEducation;
 		});
 	};
+
+	const addEducation = () => {
+		setEducation((oldEducation) => [
+			...oldEducation,
+			{
+				institute: '',
+				course: '',
+				startDate: '',
+				endDate: '',
+				result: '',
+			},
+		]);
+	};
+
+	const deleteEducation = (e, educationID) => {
+		setEducation((oldEducation) =>
+			oldEducation.filter(
+				(educationItem, educationIndex) => educationIndex !== educationID,
+			),
+		);
+	};
+
+	const onExperienceChange = (e, experienceID) => {
+		let { name, value } = e.target;
+		setExperience((oldExperience) => {
+			const newExperience = oldExperience.map(
+				(experienceItem, experienceIndex) => {
+					if (experienceIndex === experienceID)
+						return { ...experienceItem, [name]: value };
+					return experienceItem;
+				},
+			);
+			return newExperience;
+		});
+	};
+
 	const addExperience = () => {
-		setExperience((prevExperience) => [
-			...prevExperience,
+		setExperience((oldExperience) => [
+			...oldExperience,
 			{
 				company: '',
 				title: '',
@@ -248,33 +229,16 @@ function App() {
 			},
 		]);
 	};
-	// const changeHandlerGeneric = (e) => {
-	// 	let { name, value, className, id } = e.target;
-	// 	setResumeData((prevData) => ({
-	// 		...prevData,
-	// 		[className]:
-	// 			[className] === 'skills'
-	// 				? [
-	// 						...prevData[className],
-	// 						{
-	// 							[name]:
-	// 								[name] === 'skillNames'
-	// 									? [...prevData[className][id], value]
-	// 									: value,
-	// 						},
-	// 				  ]
-	// 				: [className] === 'education' || [className] === 'experience'
-	// 				? [
-	// 						...prevData[className],
-	// 						{ ...prevData[className][id], [name]: value },
-	// 				  ]
-	// 				: {
-	// 						...prevData[className],
-	// 						[name]: value,
-	// 				  },
-	// 	}));
-	// };
 
+	const deleteExperience = (e, experienceID) => {
+		setExperience((oldExperience) =>
+			oldExperience.filter(
+				(experienceItem, experienceIndex) => experienceIndex !== experienceID,
+			),
+		);
+	};
+
+	// for CV- toggle
 	const submitHandler = (e) => {
 		e.preventDefault();
 		setIsEdit(false);
@@ -309,8 +273,11 @@ function App() {
 					deleteSkill={deleteSkill}
 					onObjectiveChange={onObjectiveChange}
 					onEducationChange={onEducationChange}
+					addEducation={addEducation}
+					deleteEducation={deleteEducation}
 					onExperienceChange={onExperienceChange}
 					addExperience={addExperience}
+					deleteExperience={deleteExperience}
 				/>
 			) : (
 				<PreviewCV
