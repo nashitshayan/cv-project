@@ -2,7 +2,7 @@ import React from 'react';
 
 function Objective({ objectiveData, changeHandler }) {
 	return (
-		<div className='objectiveData asideSection'>
+		<div className='objectiveData section'>
 			<div className='input-row'>
 				<h3>OBJECTIVE : </h3>
 				<textarea

@@ -8,7 +8,7 @@ function Skills({
 	deleteSkill,
 }) {
 	return (
-		<div className=' skillsData asideSection'>
+		<div className=' skillsData section'>
 			<div className='skillsData-label'>SKILLS</div>
 			{skillsData.map((skillCategory, skillCategoryIndex) => {
 				return (
@@ -65,7 +65,7 @@ function Skills({
 				);
 			})}
 
-			<button onClick={addSkillCategory} className='btn-addSkillCategory'>
+			<button onClick={addSkillCategory} className='btn-addSection'>
 				Add Skill Category
 			</button>
 		</div>

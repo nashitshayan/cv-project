@@ -2,7 +2,7 @@ import React from 'react';
 
 function PersonalInfo({ personalData, changeHandler }) {
 	return (
-		<div className='personalData'>
+		<div className='personalData section'>
 			<div className='input-row'>
 				<label htmlFor='personalData--input-gender'>Gender : </label>
 				<select
