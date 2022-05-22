@@ -43,7 +43,7 @@ function Experience({
 									Start Date :
 								</label>
 								<input
-									type='date'
+									type='month'
 									id='experiencelData--input-startDate'
 									name='startDate'
 									value={experienceItem.startDate}
@@ -55,7 +55,7 @@ function Experience({
 									End Date :
 								</label>
 								<input
-									type='date'
+									type='month'
 									id='experiencelData--input-endDate'
 									name='endDate'
 									value={experienceItem.endDate}

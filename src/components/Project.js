@@ -25,7 +25,7 @@ function Project({ projectData, changeHandler, addProject, deleteProject }) {
 									Start Date :
 								</label>
 								<input
-									type='date'
+									type='month'
 									id='projectlData--input-startDate'
 									name='startDate'
 									value={projectItem.startDate}
@@ -35,7 +35,7 @@ function Project({ projectData, changeHandler, addProject, deleteProject }) {
 							<div className='project-input input-row'>
 								<label htmlFor='projectlData--input-endDate'>End Date :</label>
 								<input
-									type='date'
+									type='month'
 									id='projectlData--input-endDate'
 									name='endDate'
 									value={projectItem.endDate}

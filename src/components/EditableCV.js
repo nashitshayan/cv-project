@@ -14,7 +14,7 @@ function EditableCV({
 	educationData,
 	experienceData,
 	projectData,
-	onHeaderChange,
+	onHeaderDataChange,
 	onPersonalDataChange,
 	onSkillsDataChange,
 	addSkillCategory,
@@ -38,7 +38,7 @@ function EditableCV({
 				<Header
 					name={headerData.name}
 					title={headerData.title}
-					changeHandler={onHeaderChange}
+					changeHandler={onHeaderDataChange}
 				/>
 
 				<aside>

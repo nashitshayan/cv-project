@@ -45,7 +45,7 @@ function Education({
 									Start Date :
 								</label>
 								<input
-									type='date'
+									type='month'
 									id='educationlData--input-startDate'
 									name='startDate'
 									value={educationItem.startDate}
@@ -57,7 +57,7 @@ function Education({
 									End Date :
 								</label>
 								<input
-									type='date'
+									type='month'
 									id='educationlData--input-endDate'
 									name='endDate'
 									value={educationItem.endDate}

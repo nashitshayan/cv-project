@@ -227,7 +227,11 @@ header input {
 .projectData-input textarea {
 	width: 80%;
 }
-
+.educationData-input input[type='month'],
+.experienceData-input input[type='month'],
+.projectData-input input[type='month'] {
+	width: 43%;
+}
 .experience-input textarea,
 .projectData-input textarea {
 	padding: 0.25em;
@@ -298,7 +302,7 @@ header input {
 footer {
 	width: 100%;
 	font-size: 1.2rem;
-	padding: 2em;
+	padding: 1.5em;
 	background-color: var(--clr--secondary);
 	text-align: center;
 }
