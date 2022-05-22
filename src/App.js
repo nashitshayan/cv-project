@@ -249,12 +249,15 @@ function App() {
 
 	return (
 		<div className='App'>
-			<button onClick={editHandler} className='btn-cv-toggle'>
-				Edit
-			</button>
-			<button onClick={submitHandler} className='btn-cv-toggle'>
-				Preview
-			</button>
+			<div className='toggle-btns-wrapper'>
+				<h1>CV-Maker</h1>
+				<button onClick={editHandler} className='btn-cv-toggle'>
+					Edit
+				</button>
+				<button onClick={submitHandler} className='btn-cv-toggle'>
+					Preview
+				</button>
+			</div>
 
 			{isEdit ? (
 				<EditableCV
