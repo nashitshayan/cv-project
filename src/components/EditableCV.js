@@ -1,50 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
 import PersonalInfo from './PersonalInfo';
 import Skills from './Skills';
 import Objective from './Objective';
 import Education from './Education';
 import Experience from './Experience';
-
+import Project from './Project';
 function EditableCV({
-	header,
-	personalInfo,
+	headerData,
+	personalData,
 	skillsData,
-	objective,
-	education,
-	experience,
+	objectiveData,
+	educationData,
+	experienceData,
+	projectData,
 	onHeaderChange,
-	onPersonalInfoChange,
-	onSkillsChange,
+	onPersonalDataChange,
+	onSkillsDataChange,
 	addSkillCategory,
 	deleteSkillCategory,
 	addSkill,
 	deleteSkill,
-	onObjectiveChange,
-	onEducationChange,
+	onObjectiveDataChange,
+	onEducationDataChange,
 	addEducation,
 	deleteEducation,
-	onExperienceChange,
+	onExperienceDataChange,
 	addExperience,
 	deleteExperience,
+	onProjectDataChange,
+	addProject,
+	deleteProject,
 }) {
 	return (
 		<>
 			<div className='outer-wrapper'>
 				<Header
-					name={header.name}
-					title={header.title}
+					name={headerData.name}
+					title={headerData.title}
 					changeHandler={onHeaderChange}
 				/>
 
 				<aside>
 					<PersonalInfo
-						personalData={personalInfo}
-						changeHandler={onPersonalInfoChange}
+						personalData={personalData}
+						changeHandler={onPersonalDataChange}
 					/>
 					<Skills
 						skillsData={skillsData}
-						changeHandler={onSkillsChange}
+						changeHandler={onSkillsDataChange}
 						addSkillCategory={addSkillCategory}
 						deleteSkillCategory={deleteSkillCategory}
 						addSkill={addSkill}
@@ -53,20 +57,26 @@ function EditableCV({
 				</aside>
 				<main>
 					<Objective
-						objectiveData={objective}
-						changeHandler={onObjectiveChange}
+						objectiveData={objectiveData}
+						changeHandler={onObjectiveDataChange}
 					/>
 					<Education
-						educationData={education}
-						changeHandler={onEducationChange}
+						educationData={educationData}
+						changeHandler={onEducationDataChange}
 						addEducation={addEducation}
 						deleteEducation={deleteEducation}
 					/>
 					<Experience
-						experienceData={experience}
-						changeHandler={onExperienceChange}
+						experienceData={experienceData}
+						changeHandler={onExperienceDataChange}
 						addExperience={addExperience}
 						deleteExperience={deleteExperience}
+					/>
+					<Project
+						projectData={projectData}
+						changeHandler={onProjectDataChange}
+						addProject={addProject}
+						deleteProject={deleteProject}
 					/>
 				</main>
 			</div>

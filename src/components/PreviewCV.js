@@ -14,29 +14,29 @@ function convertDate(dateString) {
 	});
 }
 function PreviewCV({
-	header,
-	personalInfo,
+	headerData,
+	personalData,
 	skillsData,
-	objective,
-	education,
-	experience,
+	objectiveData,
+	educationData,
+	experienceData,
 }) {
 	return (
 		<>
-			<div className='outer-wrapper'>
+			<div className='outer-wrapper cv-preview'>
 				<header>
-					<h1>{header.name || 'Enter Name'} </h1>
-					<h2>{header.title || 'Enter Title'}</h2>
+					<h1>{headerData.name || 'Enter Name'} </h1>
+					<h2>{headerData.title || 'Enter Title'}</h2>
 				</header>
 
 				<aside>
 					<ul className='icon'>
-						{Object.getOwnPropertyNames(personalInfo).map((item, index) => {
+						{Object.getOwnPropertyNames(personalData).map((item, index) => {
 							return (
 								<li key={index} className={icons[index]}>
 									{(item === 'dateOfBirth'
-										? convertDate(personalInfo[item])
-										: personalInfo[item]) || `Enter ${item}`}
+										? convertDate(personalData[item])
+										: personalData[item]) || `Enter ${item}`}
 								</li>
 							);
 						})}
@@ -48,10 +48,18 @@ function PreviewCV({
 						{skillsData.map((skillCategoryItem, skillCategoryIndex) => {
 							return (
 								<div key={skillCategoryIndex}>
-									<li>{skillCategoryItem.skillCategory}</li>
+									<li>
+										{skillCategoryItem.skillCategory || (
+											<span className='greytext'>Add Skill Category</span>
+										)}
+									</li>
 									<ul>
 										{skillCategoryItem.skills.map((skill, skillIndex) => (
-											<li key={skillIndex}>{skill.skillName}</li>
+											<li key={skillIndex}>
+												{skill.skillName || (
+													<span className='greytext'>Add Skill</span>
+												)}
+											</li>
 										))}
 									</ul>
 								</div>
@@ -60,13 +68,84 @@ function PreviewCV({
 					</div>
 				</aside>
 				<main>
-					<div className='objectiveDisplay'>
+					<div className='objectiveDisplay displaySection'>
 						<h3>OBJECTIVE</h3>
-						<p className='greytext'>{objective || 'enter objective'}</p>
+						<p className='greytext'>{objectiveData || 'enter objective'}</p>
 					</div>
-					{/* <Objective />
-				<Education />
-				<Experience /> */}
+					<div className='educationDisplay displaySection'>
+						<h3>EDUCATION</h3>
+						{educationData.map((educationItem, educationIndex) => {
+							return (
+								<div key={educationIndex} className='educationItem'>
+									<li className='educationItem--institute'>
+										{educationItem.institute || (
+											<span className='greytext'>Add Insitute Name</span>
+										)}
+									</li>
+									<div className='educationItem--course-and-duration-wrapper'>
+										<div className='educationItem--course'>
+											Course:{' '}
+											{educationItem.course || (
+												<span className='greytext'>Add Course Name</span>
+											)}
+										</div>
+										<div className='educationItem--duration'>
+											{educationItem.startDate || (
+												<span className='greytext'>Add Start Date</span>
+											)}{' '}
+											-{' '}
+											{educationItem.endDate || (
+												<span className='greytext'>Add End Date</span>
+											)}
+										</div>
+									</div>
+									<div className='educationItem--result'>
+										- GPA:{' '}
+										{educationItem.result || (
+											<span className='greytext'>Add Result</span>
+										)}
+									</div>
+								</div>
+							);
+						})}
+					</div>
+					<div className='experienceDisplay displaySection'>
+						<h3>EXPERIENCE</h3>
+						{experienceData.map((experienceItem, experienceIndex) => {
+							return (
+								<div key={experienceIndex} className='experienceItem'>
+									<li className='experienceItem--company'>
+										{experienceItem.company || (
+											<span className='greytext'>Add Company Name</span>
+										)}
+									</li>
+									<div className='experienceItem--course-and-duration-wrapper'>
+										<div className='experienceItem--course'>
+											Title:{' '}
+											{experienceItem.title || (
+												<span className='greytext'>Add Job Title</span>
+											)}
+										</div>
+										<div className='experienceItem--duration'>
+											{experienceItem.startDate || (
+												<span className='greytext'>Add Start Date</span>
+											)}{' '}
+											-{' '}
+											{experienceItem.endDate || (
+												<span className='greytext'>Add End Date</span>
+											)}
+										</div>
+									</div>
+									<div className='experienceItem--result'>
+										-{' '}
+										{experienceItem.summary || (
+											<span className='greytext'>Add Summary</span>
+										)}
+									</div>
+								</div>
+							);
+						})}
+					</div>
 				</main>
 			</div>
 		</>
