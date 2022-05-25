@@ -412,6 +412,7 @@ footer a {
 		left: 5%;
 		width: 90%;
 		background-color: #222;
+		z-index: 10;
 	}
 	.sticky + .outer-wrapper {
 		padding-top: 14em;
