@@ -1,0 +1,75 @@
+import React from 'react';
+function Skills({
+	skillsData,
+	changeHandler,
+	addSkillCategory,
+	deleteSkillCategory,
+	addSkill,
+	deleteSkill,
+}) {
+	return (
+		<div className=' skillsData section'>
+			<div className='skillsData-label'>SKILLS</div>
+			{skillsData.map((skillCategory, skillCategoryIndex) => {
+				return (
+					<div className='skillsData-input' key={skillCategoryIndex}>
+						<div className='input-row'>
+							<label htmlFor='skill-category-input'>
+								<div>Category :</div>
+							</label>
+							<input
+								type='text'
+								id='skill-category-input'
+								placeholder='skill category'
+								name='title'
+								value={skillCategory.title}
+								onChange={(e) => changeHandler(e, skillCategoryIndex)}
+							/>
+							<span
+								className='btn-cancel-skillCategory icon-cancel'
+								onClick={(e) =>
+									deleteSkillCategory(e, skillCategoryIndex)
+								}></span>
+						</div>
+						<div className='skills-input input-row'>
+							<div className='skills-input-label'>Skill :</div>
+							{skillCategory.skills.map((skill, skillIndex) => {
+								return (
+									<span key={skillIndex} className='skills-input-container'>
+										<input
+											type='text'
+											id='skillname-input'
+											placeholder='skill name'
+											className='skills'
+											name='skillName'
+											value={skill.skillName}
+											onChange={(e) =>
+												changeHandler(e, skillCategoryIndex, skillIndex)
+											}
+										/>
+										<span
+											className='btn-cancel-skillName icon-cancel'
+											onClick={(e) =>
+												deleteSkill(e, skillCategoryIndex, skillIndex)
+											}></span>
+									</span>
+								);
+							})}
+							<span
+								className='btn-addSkill'
+								onClick={(e) => addSkill(e, skillCategoryIndex)}>
+								<i className='icon-plus'></i>
+							</span>
+						</div>
+					</div>
+				);
+			})}
+
+			<button onClick={addSkillCategory} className='btn-addSection'>
+				Add Skill Category
+			</button>
+		</div>
+	);
+}
+
+export default Skills;
