@@ -147,7 +147,8 @@ function App() {
 	};
 
 	const onEducationDataChange = (e, educationID) => {
-		let { name, value } = e.target;
+		let { name, value, type, checked } = e.target;
+		value = type === 'checkbox' ? checked : value;
 		setEducationData((oldEducationData) => {
 			const newEducationData = oldEducationData.map(
 				(educationItem, educationIndex) => {
@@ -156,6 +157,7 @@ function App() {
 					return educationItem;
 				},
 			);
+			//	console.log(newEducationData);
 			return newEducationData;
 		});
 	};
@@ -168,6 +170,7 @@ function App() {
 				course: '',
 				startDate: '',
 				endDate: '',
+				isCurrentlyStudying: false,
 				result: '',
 			},
 		]);
@@ -182,7 +185,8 @@ function App() {
 	};
 
 	const onExperienceDataChange = (e, experienceID) => {
-		let { name, value } = e.target;
+		let { name, value, type, checked } = e.target;
+		value = type === 'checkbox' ? checked : value;
 		setExperienceData((oldExperienceData) => {
 			const newExperienceData = oldExperienceData.map(
 				(experienceItem, experienceIndex) => {
@@ -203,6 +207,7 @@ function App() {
 				title: '',
 				startDate: '',
 				endDate: '',
+				isCurrentlyWorking: false,
 				summary: '',
 			},
 		]);
@@ -217,7 +222,8 @@ function App() {
 	};
 
 	const onProjectDataChange = (e, projectID) => {
-		let { name, value } = e.target;
+		let { name, value, type, checked } = e.target;
+		value = type === 'checkbox' ? checked : value;
 		setProjectData((oldProjectData) => {
 			const newProjectData = oldProjectData.map((projectItem, projectIndex) => {
 				if (projectIndex === projectID)
@@ -235,6 +241,7 @@ function App() {
 				title: '',
 				startDate: '',
 				endDate: '',
+				isCurrentlyWorking: false,
 				summary: '',
 			},
 		]);

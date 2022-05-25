@@ -54,14 +54,31 @@ function Experience({
 								<label htmlFor='experiencelData--input-endDate'>
 									End Date :
 								</label>
-								<input
-									type='month'
-									id='experiencelData--input-endDate'
-									name='endDate'
-									value={experienceItem.endDate}
-									onChange={(e) => changeHandler(e, experienceIndex)}
-								/>
+								{experienceItem.isCurrentlyWorking ? (
+									'Present'
+								) : (
+									<input
+										type='month'
+										id='experiencelData--input-endDate'
+										name='endDate'
+										value={experienceItem.endDate}
+										onChange={(e) => changeHandler(e, experienceIndex)}
+									/>
+								)}
 							</div>
+						</div>
+						<div className='isCurrently-checkbox-wrapper'>
+							<input
+								className='isCurrently-checkbox'
+								id='isCurrently-checkbox'
+								type='checkbox'
+								name='isCurrentlyWorking'
+								checked={experienceItem.isCurrentlyWorking}
+								onChange={(e) => changeHandler(e, experienceIndex)}
+							/>
+							<label htmlFor='isCurrently-checkbox'>
+								I currently work here.
+							</label>
 						</div>
 						<div className='experience-input input-row'>
 							<label htmlFor='experiencelData--input-summary'>Summary :</label>

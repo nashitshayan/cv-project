@@ -56,14 +56,31 @@ function Education({
 								<label htmlFor='educationlData--input-endDate'>
 									End Date :
 								</label>
-								<input
-									type='month'
-									id='educationlData--input-endDate'
-									name='endDate'
-									value={educationItem.endDate}
-									onChange={(e) => changeHandler(e, educationIndex)}
-								/>
+								{educationItem.isCurrentlyStudying ? (
+									'Present'
+								) : (
+									<input
+										type='month'
+										id='educationlData--input-endDate'
+										name='endDate'
+										value={educationItem.endDate}
+										onChange={(e) => changeHandler(e, educationIndex)}
+									/>
+								)}
 							</div>
+						</div>
+						<div className='isCurrently-checkbox-wrapper'>
+							<input
+								className='isCurrently-checkbox'
+								id='isCurrently-checkbox'
+								type='checkbox'
+								name='isCurrentlyStudying'
+								checked={educationItem.isCurrentlyStudying}
+								onChange={(e) => changeHandler(e, educationIndex)}
+							/>
+							<label htmlFor='isCurrently-checkbox'>
+								I currently study here.
+							</label>
 						</div>
 						<div className='education-input input-row'>
 							<label htmlFor='educationlData--input-result'>Result :</label>

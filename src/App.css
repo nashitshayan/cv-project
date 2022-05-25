@@ -112,6 +112,7 @@ header input {
 .personalData input,
 .personalData select,
 .skillsData-input input {
+	width: 12em;
 	max-width: 60%;
 	padding: 0.25em 0.5em;
 	border-radius: 4px;
@@ -153,47 +154,7 @@ header input {
 	margin-left: 0.25em;
 	padding-right: 1.56em;
 }
-.btn-cancel-skillName {
-	position: absolute;
-	color: #90938f;
-	right: 0;
-	top: 1px;
-	display: none;
-}
-.skills-input-container:hover .btn-cancel-skillName {
-	display: inline;
-	cursor: pointer;
-}
-.btn-addSkill {
-	cursor: pointer;
-	color: #7bb274;
-	margin-left: 0.25em;
-	margin-bottom: 0.4em;
-}
 
-.btn-addSection {
-	font-family: 'Lato', sans-serif;
-	font-weight: bold;
-	background-color: var(--clr--secondary);
-	color: var(--clr--neutral);
-	border: 1px solid var(--clr--primary);
-	padding: 0.75em;
-	margin-top: 1em;
-	cursor: pointer;
-}
-.btn-addSection:hover {
-	background-color: var(--clr--accent);
-	color: var(--clr--primary);
-	/* border: 1px solid var(--clr--neutral); */
-}
-.btn-cancel-skillCategory,
-.btn-cancel-education,
-.btn-cancel-experience,
-.btn-cancel-project {
-	cursor: pointer;
-	color: #cf4952;
-	margin-right: -0.25em;
-}
 .objectiveData textarea {
 	width: 75%;
 	font-size: 1.1rem;
@@ -208,6 +169,7 @@ header input {
 .experienceData-input,
 .projectData-input {
 	border: 2px solid var(--clr--primary);
+	border-radius: 4px;
 	padding: 1.5em 1.25em 1em 1.25em;
 	position: relative;
 }
@@ -230,7 +192,7 @@ header input {
 .educationData-input input[type='month'],
 .experienceData-input input[type='month'],
 .projectData-input input[type='month'] {
-	width: 43%;
+	width: 50%;
 }
 .experience-input textarea,
 .projectData-input textarea {
@@ -259,12 +221,64 @@ header input {
 	display: flex;
 	justify-content: space-between;
 	gap: 1em;
+	/* border: 1px solid red; */
 }
 
-.educationData--input-dates > div > label,
-.experienceData--input-dates > div > label,
-.projectData--input-dates > div > label {
-	flex-basis: 40%;
+.educationData--input-dates > div,
+.experienceData--input-dates > div,
+.projectData--input-dates > div {
+	width: 50%;
+}
+
+/* checkbox */
+
+.isCurrently-checkbox-wrapper {
+	margin: -0.25em 2em 0.5em auto;
+	text-align: right;
+}
+
+/* buttons */
+.btn-cancel-skillName {
+	position: absolute;
+	color: #90938f;
+	right: 0;
+	top: 1px;
+	display: none;
+}
+.skills-input-container:hover .btn-cancel-skillName {
+	display: inline;
+	cursor: pointer;
+}
+.btn-addSkill {
+	cursor: pointer;
+	color: #7bb274;
+	margin-left: 0.25em;
+	margin-bottom: 0.4em;
+}
+
+.btn-addSection {
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	background-color: var(--clr--secondary);
+	color: var(--clr--neutral);
+	border: 1px solid var(--clr--primary);
+	border-radius: 4px;
+	padding: 0.75em;
+	margin-top: 1em;
+	cursor: pointer;
+}
+.btn-addSection:hover {
+	background-color: var(--clr--accent);
+	color: var(--clr--primary);
+	/* border: 1px solid var(--clr--neutral); */
+}
+.btn-cancel-skillCategory,
+.btn-cancel-education,
+.btn-cancel-experience,
+.btn-cancel-project {
+	cursor: pointer;
+	color: #cf4952;
+	margin-right: -0.25em;
 }
 
 .btn-cancel-education,
@@ -297,6 +311,10 @@ header input {
 
 .btn-cv-toggle:hover {
 	background-color: var(--clr--accent);
+}
+
+/* cv preview */
+.skillsDisplay {
 }
 
 footer {
