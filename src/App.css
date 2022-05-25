@@ -36,6 +36,7 @@ li {
 .App {
 	width: min(90%, 50em);
 	margin-inline: auto;
+	position: relative;
 }
 
 .outer-wrapper {
@@ -44,9 +45,9 @@ li {
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(12, 1fr);
 }
-.cv-preview {
-	height: 29.7cm;
-}
+/* .cv-preview {
+	min-height: 29.7cm;
+} */
 aside {
 	background-color: var(--clr--primary);
 	color: var(--clr--neutral);
@@ -403,6 +404,17 @@ footer a {
 	.input-row,
 	.toggle-btns-wrapper {
 		flex-direction: column;
+	}
+
+	.sticky {
+		position: fixed;
+		top: 0;
+		left: 5%;
+		width: 90%;
+		background-color: #222;
+	}
+	.sticky + .outer-wrapper {
+		padding-top: 14em;
 	}
 }
 

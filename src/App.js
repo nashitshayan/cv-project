@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EditableCV from './components/EditableCV';
 import PreviewCV from './components/PreviewCV';
 import Footer from './components/Footer';
@@ -264,6 +264,19 @@ function App() {
 		setIsEdit(true);
 	};
 
+	//add a function to window.onscroll
+	useEffect(() => {
+		const toggleWrapper = document.querySelector('.toggle-btns-wrapper');
+		const sticky = toggleWrapper.offsetTop;
+		console.log(sticky, window.pageYOffset, toggleWrapper);
+		const stickyToggleBar = () => {
+			if (window.pageYOffset > sticky) toggleWrapper.classList.add('sticky');
+			else toggleWrapper.classList.remove('sticky');
+		};
+		window.onscroll = function () {
+			stickyToggleBar();
+		};
+	}, []);
 	return (
 		<div className='App'>
 			<div className='toggle-btns-wrapper'>
