@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
 :root {
 	--clr--primary: #222c3b;
@@ -24,8 +24,14 @@ label {
 .greytext {
 	color: rgb(110, 110, 110);
 }
+.bold {
+	font-weight: 900;
+}
 .faded {
 	opacity: 80%;
+}
+li {
+	list-style: square;
 }
 .App {
 	width: min(90%, 50em);
@@ -119,9 +125,6 @@ header input {
 	border: 1px solid var(--clr--primary);
 }
 
-.skillsData {
-	/* border: 2px solid pink; */
-}
 .skillsData-label {
 	/* margin-bottom: 0; */
 	font-size: 1.2rem;
@@ -314,7 +317,57 @@ header input {
 }
 
 /* cv preview */
+
+.personalDisplay {
+	padding-bottom: 1em;
+	border-bottom: 1px solid var(--clr--neutral);
+}
+.personalDisplay li {
+	list-style: none;
+}
+
 .skillsDisplay {
+	padding-left: 0.5em;
+}
+
+.objectiveDisplay,
+.educationDisplay,
+.experienceDisplay,
+.projectDisplay {
+	padding: 1em 0;
+	border-bottom: 1px solid var(--clr--primary);
+}
+.educationItem > * + *,
+.experienceItem > * + *,
+.projectItem > * + * {
+	margin-top: 0.5em;
+	margin-left: 7%;
+	/* 	
+	border: 1px solid red; */
+}
+.educationItem > li,
+.experienceItem > li,
+.projectItem > li {
+	margin-left: 0.5em;
+}
+
+.educationItem--course-and-duration-wrapper,
+.experienceItem--title-and-duration-wrapper,
+.projectItem--title-and-duration-wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+.educationItem--duration > span,
+.experienceItem--duration > span,
+.projectItem--duration > span {
+	font-weight: 700;
+	margin-inline: 0.5em;
+}
+.educationItem--duration > span + span,
+.experienceItem--duration > span + span,
+.projectItem--duration > span + span {
+	display: inline-block;
+	width: 5em;
 }
 
 footer {

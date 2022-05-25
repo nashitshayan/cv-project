@@ -21,8 +21,8 @@ function Skills({
 								type='text'
 								id='skill-category-input'
 								placeholder='skill category'
-								name='skillCategory'
-								value={skillCategory.skillCategory}
+								name='title'
+								value={skillCategory.title}
 								onChange={(e) => changeHandler(e, skillCategoryIndex)}
 							/>
 							<span

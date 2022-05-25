@@ -7,10 +7,11 @@ const icons = [
 	'icon-location',
 ];
 function convertDate(dateString) {
+	// if (dateString.length > 7), it means the date includes day as well, otherwise just month and year
 	return new Date(dateString).toLocaleDateString('en-us', {
 		year: 'numeric',
 		month: 'short',
-		day: 'numeric',
+		day: dateString.length > 7 ? 'numeric' : undefined,
 	});
 }
 function PreviewCV({
@@ -20,6 +21,7 @@ function PreviewCV({
 	objectiveData,
 	educationData,
 	experienceData,
+	projectData,
 }) {
 	return (
 		<>
@@ -30,7 +32,7 @@ function PreviewCV({
 				</header>
 
 				<aside>
-					<ul className='icon'>
+					<ul className='icon personalDisplay'>
 						{Object.getOwnPropertyNames(personalData).map((item, index) => {
 							return (
 								<li key={index} className={icons[index]}>
@@ -41,7 +43,7 @@ function PreviewCV({
 							);
 						})}
 					</ul>
-					<hr />
+
 					<div className='skillsDisplay'>
 						<h3>SKILLS</h3>
 
@@ -49,7 +51,7 @@ function PreviewCV({
 							return (
 								<div key={skillCategoryIndex}>
 									<li>
-										{skillCategoryItem.skillCategory || (
+										{skillCategoryItem.title || (
 											<span className='greytext'>Add Skill Category</span>
 										)}
 									</li>
@@ -77,30 +79,34 @@ function PreviewCV({
 						{educationData.map((educationItem, educationIndex) => {
 							return (
 								<div key={educationIndex} className='educationItem'>
-									<li className='educationItem--institute'>
+									<li className='educationItem--institute bold'>
 										{educationItem.institute || (
 											<span className='greytext'>Add Insitute Name</span>
 										)}
 									</li>
 									<div className='educationItem--course-and-duration-wrapper'>
-										<div className='educationItem--course'>
+										<div className='educationItem--course greytext'>
 											Course:{' '}
 											{educationItem.course || (
 												<span className='greytext'>Add Course Name</span>
 											)}
 										</div>
 										<div className='educationItem--duration'>
-											{educationItem.startDate || (
+											{<span>{convertDate(educationItem.startDate)}</span> || (
 												<span className='greytext'>Add Start Date</span>
-											)}{' '}
-											-{' '}
-											{educationItem.endDate || (
-												<span className='greytext'>Add End Date</span>
 											)}
+											-
+											{(
+												<span>
+													{educationItem.isCurrentlyStudying
+														? 'Present'
+														: convertDate(educationItem.endDate)}
+												</span>
+											) || <span className='greytext'>Add End Date</span>}
 										</div>
 									</div>
 									<div className='educationItem--result'>
-										- GPA:{' '}
+										- GPA:
 										{educationItem.result || (
 											<span className='greytext'>Add Result</span>
 										)}
@@ -114,31 +120,67 @@ function PreviewCV({
 						{experienceData.map((experienceItem, experienceIndex) => {
 							return (
 								<div key={experienceIndex} className='experienceItem'>
-									<li className='experienceItem--company'>
+									<li className='experienceItem--company bold'>
 										{experienceItem.company || (
 											<span className='greytext'>Add Company Name</span>
 										)}
 									</li>
-									<div className='experienceItem--course-and-duration-wrapper'>
-										<div className='experienceItem--course'>
+									<div className='experienceItem--title-and-duration-wrapper'>
+										<div className='experienceItem--course greytext'>
 											Title:{' '}
 											{experienceItem.title || (
 												<span className='greytext'>Add Job Title</span>
 											)}
 										</div>
 										<div className='experienceItem--duration'>
-											{experienceItem.startDate || (
+											{<span>{convertDate(experienceItem.startDate)}</span> || (
 												<span className='greytext'>Add Start Date</span>
-											)}{' '}
-											-{' '}
-											{experienceItem.endDate || (
+											)}
+											-
+											{(
+												<span>
+													{experienceItem.isCurrentlyWorking
+														? 'Present'
+														: convertDate(experienceItem.endDate)}
+												</span>
+											) || <span className='greytext'>Add End Date</span>}
+										</div>
+									</div>
+									<div className='experienceItem--result'>
+										-
+										{experienceItem.summary || (
+											<span className='greytext'>Add Summary</span>
+										)}
+									</div>
+								</div>
+							);
+						})}
+					</div>
+					<div className='projectDisplay displaySection'>
+						<h3>PROJECTS</h3>
+						{projectData.map((projectItem, projectIndex) => {
+							return (
+								<div key={projectIndex} className='projectItem'>
+									<div className='projectItem--title-and-duration-wrapper'>
+										<li className='projectItem--title bold'>
+											{projectItem.title || (
+												<span className='greytext'>Add Company Name</span>
+											)}
+										</li>
+
+										<div className='projectItem--duration'>
+											{<span>{convertDate(projectItem.startDate)}</span> || (
+												<span className='greytext'>Add Start Date</span>
+											)}
+											-
+											{<span>{convertDate(projectItem.endDate)}</span> || (
 												<span className='greytext'>Add End Date</span>
 											)}
 										</div>
 									</div>
-									<div className='experienceItem--result'>
+									<div className='projectItem--result'>
 										-{' '}
-										{experienceItem.summary || (
+										{projectItem.summary || (
 											<span className='greytext'>Add Summary</span>
 										)}
 									</div>

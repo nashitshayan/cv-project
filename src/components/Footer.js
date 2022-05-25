@@ -18,7 +18,9 @@ function Footer() {
 			</div>
 			<div>
 				Design taken from{' '}
-				<a href='https://www.goodcv.com/images/cv/screenshots/thumbs/en/outstanding_10.png?v=1.0.1'>
+				<a
+					href='https://www.goodcv.com/images/cv/screenshots/thumbs/en/outstanding_10.png?v=1.0.1'
+					target='_blank'>
 					here
 				</a>
 			</div>
