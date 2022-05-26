@@ -1,30 +1,117 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import EditableCV from './components/EditableCV';
 import PreviewCV from './components/PreviewCV';
 import Footer from './components/Footer';
 
 function App() {
-	const [headerData, setHeaderData] = useState({
-		name: '',
-		title: '',
-	});
-	const [personalData, setPersonalData] = useState({
-		gender: '',
-		dateOfBirth: '',
-		phone: '',
-		email: '',
-		website: '',
-		location: '',
-	});
-	const [skillsData, setSkillsData] = useState([]);
-	const [objectiveData, setObjectiveData] = useState('');
+	//localStorage.clear();
 
-	const [educationData, setEducationData] = useState([]);
-	const [experienceData, setExperienceData] = useState([]);
+	//get data from localstorage, if no data then set initial value
+	const getInitialHeaderData = () => {
+		const headerDataFromLocalStorage = JSON.parse(
+			localStorage.getItem('headerData'),
+		);
+		//console.log(headerDataFromLocalStorage);
+		return headerDataFromLocalStorage
+			? headerDataFromLocalStorage
+			: {
+					name: '',
+					title: '',
+			  };
+	};
 
-	const [projectData, setProjectData] = useState([]);
-	const [isEdit, setIsEdit] = useState(true);
+	const getInitialPersonalData = () => {
+		const personalDataFromLocalStorage = JSON.parse(
+			localStorage.getItem('personalData'),
+		);
+		return personalDataFromLocalStorage
+			? personalDataFromLocalStorage
+			: {
+					gender: '',
+					dateOfBirth: '',
+					phone: '',
+					email: '',
+					website: '',
+					location: '',
+			  };
+	};
+	const getInitialSkillsData = () => {
+		const skillsDataFromLocalStorage = JSON.parse(
+			localStorage.getItem('skillsData'),
+		);
+		return skillsDataFromLocalStorage ? skillsDataFromLocalStorage : [];
+	};
+	const getInitialObjectiveData = () => {
+		const objectiveDataFromLocalStorage = JSON.parse(
+			localStorage.getItem('objectiveData'),
+		);
+		return objectiveDataFromLocalStorage ? objectiveDataFromLocalStorage : '';
+	};
+	const getInitialEducationData = () => {
+		const educationDataFromLocalStorage = JSON.parse(
+			localStorage.getItem('educationData'),
+		);
+		return educationDataFromLocalStorage ? educationDataFromLocalStorage : [];
+	};
+	const getInitialExperienceData = () => {
+		const experienceDataFromLocalStorage = JSON.parse(
+			localStorage.getItem('experienceData'),
+		);
+		return experienceDataFromLocalStorage ? experienceDataFromLocalStorage : [];
+	};
+	const getInitialProjectData = () => {
+		const projectDataFromLocalStorage = JSON.parse(
+			localStorage.getItem('projectData'),
+		);
+		return projectDataFromLocalStorage ? projectDataFromLocalStorage : [];
+	};
+
+	const getInitialIsEdit = () => {
+		const isEditFromLocalStorage = JSON.parse(localStorage.getItem('isEdit'));
+		console.log(isEditFromLocalStorage);
+		return isEditFromLocalStorage !== null ? isEditFromLocalStorage : true;
+	};
+	// setting initial states
+	const [headerData, setHeaderData] = useState(getInitialHeaderData);
+	const [personalData, setPersonalData] = useState(getInitialPersonalData);
+	const [skillsData, setSkillsData] = useState(getInitialSkillsData);
+	const [objectiveData, setObjectiveData] = useState(getInitialObjectiveData);
+
+	const [educationData, setEducationData] = useState(getInitialEducationData);
+	const [experienceData, setExperienceData] = useState(
+		getInitialExperienceData,
+	);
+
+	const [projectData, setProjectData] = useState(getInitialProjectData);
+	const [isEdit, setIsEdit] = useState(getInitialIsEdit);
+
+	//set data to local storage;
+	useEffect(() => {
+		localStorage.setItem('headerData', JSON.stringify(headerData));
+	}, [headerData]);
+	useEffect(() => {
+		localStorage.setItem('personalData', JSON.stringify(personalData));
+	}, [personalData]);
+	useEffect(() => {
+		localStorage.setItem('skillsData', JSON.stringify(skillsData));
+	}, [skillsData]);
+	useEffect(() => {
+		localStorage.setItem('objectiveData', JSON.stringify(objectiveData));
+	}, [objectiveData]);
+	useEffect(() => {
+		localStorage.setItem('educationData', JSON.stringify(educationData));
+	}, [educationData]);
+	useEffect(() => {
+		localStorage.setItem('experienceData', JSON.stringify(experienceData));
+	}, [experienceData]);
+	useEffect(() => {
+		localStorage.setItem('projectData', JSON.stringify(projectData));
+	}, [projectData]);
+
+	useEffect(() => {
+		localStorage.setItem('isEdit', JSON.stringify(isEdit));
+	}, [isEdit]);
 
 	// event handlers
 	const onHeaderDataChange = (e) => {
@@ -264,11 +351,17 @@ function App() {
 		setIsEdit(true);
 	};
 
+	//for printing page as pdf
+	const printPage = () => {
+		console.log('oeibt');
+		window.print();
+	};
+
 	//add a function to window.onscroll
 	useEffect(() => {
 		const toggleWrapper = document.querySelector('.toggle-btns-wrapper');
 		const sticky = toggleWrapper.offsetTop;
-		console.log(sticky, window.pageYOffset, toggleWrapper);
+
 		const stickyToggleBar = () => {
 			if (window.pageYOffset > sticky) toggleWrapper.classList.add('sticky');
 			else toggleWrapper.classList.remove('sticky');
@@ -287,6 +380,11 @@ function App() {
 				<button onClick={submitHandler} className='btn-cv-toggle'>
 					Preview
 				</button>
+				{!isEdit && (
+					<button onClick={printPage} className='btn-cv-toggle'>
+						Print
+					</button>
+				)}
 			</div>
 			{isEdit ? (
 				<EditableCV

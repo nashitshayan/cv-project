@@ -419,6 +419,19 @@ footer a {
 	}
 }
 
+/* FOR PRINTING */
+
+@media print {
+	.toggle-btns-wrapper,
+	footer {
+		display: none;
+	}
+	body {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+}
+
 /* font icons */
 @font-face {
 	font-family: 'fontello';
