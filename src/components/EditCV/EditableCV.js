@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from './Header';
-import PersonalInfo from './PersonalInfo';
-import Skills from './Skills';
-import Objective from './Objective';
-import Education from './Education';
-import Experience from './Experience';
-import Project from './Project';
+import Header from './CV-Sections/Header';
+import PersonalInfo from './CV-Sections/PersonalInfo';
+import Skills from './CV-Sections/Skills';
+import Objective from './CV-Sections/Objective';
+import Education from './CV-Sections/Education';
+import Experience from './CV-Sections/Experience';
+import Project from './CV-Sections/Project';
 function EditableCV({
 	headerData,
 	personalData,

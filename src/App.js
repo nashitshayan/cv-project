@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import EditableCV from './components/EditableCV';
-import PreviewCV from './components/PreviewCV';
+import EditableCV from './components/EditCV/EditableCV';
+import PreviewCV from './components/DisplayCV/PreviewCV';
 import Footer from './components/Footer';
 
 function App() {
@@ -72,6 +72,7 @@ function App() {
 		console.log(isEditFromLocalStorage);
 		return isEditFromLocalStorage !== null ? isEditFromLocalStorage : true;
 	};
+
 	// setting initial states
 	const [headerData, setHeaderData] = useState(getInitialHeaderData);
 	const [personalData, setPersonalData] = useState(getInitialPersonalData);
@@ -178,6 +179,7 @@ function App() {
 			},
 		]);
 	};
+
 	const deleteSkillCategory = (e, skillCategoryID) => {
 		setSkillsData((oldSkillsData) =>
 			oldSkillsData.filter(
@@ -351,25 +353,22 @@ function App() {
 		setIsEdit(true);
 	};
 
-	//for printing page as pdf
-	const printPage = () => {
-		console.log('oeibt');
-		window.print();
-	};
-
-	//add a function to window.onscroll
+	//add a function to window.onscroll for making the toggle btns sticky
 	useEffect(() => {
 		const toggleWrapper = document.querySelector('.toggle-btns-wrapper');
 		const sticky = toggleWrapper.offsetTop;
 
 		const stickyToggleBar = () => {
-			if (window.pageYOffset > sticky) toggleWrapper.classList.add('sticky');
-			else toggleWrapper.classList.remove('sticky');
+			window.pageYOffset > sticky
+				? toggleWrapper.classList.add('sticky')
+				: toggleWrapper.classList.remove('sticky');
 		};
-		window.onscroll = function () {
-			stickyToggleBar();
-		};
+		window.onscroll = () => stickyToggleBar();
 	}, []);
+
+	//for printing page as pdf
+	const printPage = () => window.print();
+
 	return (
 		<div className='App'>
 			<div className='toggle-btns-wrapper'>

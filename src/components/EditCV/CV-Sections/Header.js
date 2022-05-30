@@ -1,7 +1,4 @@
-import React from 'react';
-
-function Header({ name, title, changeHandler }) {
-	// console.log(changeHandler);
+export default function Header({ name, title, changeHandler }) {
 	return (
 		<header>
 			<div className='input-row'>
@@ -33,5 +30,3 @@ function Header({ name, title, changeHandler }) {
 		</header>
 	);
 }
-
-export default Header;

@@ -96,7 +96,7 @@ function Education({
 					</div>
 				);
 			})}
-			<button onClick={addEducation} className='btn-addSection'>
+			<button onClick={addEducation} className='btn-add-section'>
 				Add Education
 			</button>
 		</div>

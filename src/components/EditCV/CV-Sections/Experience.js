@@ -93,7 +93,7 @@ function Experience({
 					</div>
 				);
 			})}
-			<button onClick={addExperience} className='btn-addSection'>
+			<button onClick={addExperience} className='btn-add-section'>
 				Add experience
 			</button>
 		</div>

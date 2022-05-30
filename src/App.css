@@ -15,24 +15,30 @@ body {
 	font-family: 'Lato', sans-serif;
 	background-color: #222;
 }
+
 input,
 select,
 textarea,
 label {
 	font-family: 'Lato', sans-serif;
 }
+
 .greytext {
 	color: rgb(110, 110, 110);
 }
+
 .bold {
 	font-weight: 900;
 }
+
 .faded {
 	opacity: 80%;
 }
+
 li {
 	list-style: square;
 }
+
 .App {
 	width: min(90%, 50em);
 	margin-inline: auto;
@@ -45,9 +51,7 @@ li {
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(12, 1fr);
 }
-/* .cv-preview {
-	min-height: 29.7cm;
-} */
+
 aside {
 	background-color: var(--clr--primary);
 	color: var(--clr--neutral);
@@ -56,7 +60,6 @@ aside {
 	padding: 0.5em;
 }
 main {
-	/* background-color: var(--clr--neutral); */
 	background-color: rgb(238, 238, 238);
 	color: var(--clr--primary);
 	grid-column: 5/13;
@@ -65,7 +68,6 @@ main {
 	padding-bottom: 3em;
 }
 
-/* Header Section */
 header {
 	font-weight: 600;
 	font-size: 1.1rem;
@@ -98,12 +100,10 @@ header input {
 	align-items: center;
 	justify-content: flex-start;
 	margin-bottom: 0.5em;
-	/* padding: 0.5em; */
 }
 
 .section {
 	padding: 0.5em;
-	/* backsground-color: grey; */
 }
 .section h3 {
 	margin-top: 0;
@@ -116,6 +116,7 @@ header input {
 .project-input label {
 	width: 5em;
 }
+
 .personalData input,
 .personalData select,
 .skillsData-input input {
@@ -127,30 +128,24 @@ header input {
 }
 
 .skillsData-label {
-	/* margin-bottom: 0; */
 	font-size: 1.2rem;
 }
 .skillsData-input {
-	/* border: 2px solid yellow; */
 	padding-top: 1em;
 }
 
 .skills-input {
 	padding-top: 0.5em;
 	flex-wrap: wrap;
-
-	/* margin-top: -1.5em; */
 }
 
 .skills-input-label {
 	display: inline;
 	margin-bottom: 0.5em;
-	/* border: 2px solid yellow; */
 }
 .skills-input-container {
 	position: relative;
 	margin-bottom: 0.5em;
-	/* border: 2px solid yellow; */
 }
 
 .skills-input input {
@@ -182,9 +177,6 @@ header input {
 .projectData-input + .projectData-input {
 	margin-top: 1em;
 }
-/* .educationData-input * {
-	border: 1px solid var(--clr--primary);
-} */
 
 .educationData-input input[type='text'],
 .experienceData-input input[type='text'],
@@ -193,11 +185,13 @@ header input {
 .projectData-input textarea {
 	width: 80%;
 }
+
 .educationData-input input[type='month'],
 .experienceData-input input[type='month'],
 .projectData-input input[type='month'] {
 	width: 50%;
 }
+
 .experience-input textarea,
 .projectData-input textarea {
 	padding: 0.25em;
@@ -219,13 +213,13 @@ header input {
 	border-radius: 4px;
 	border: 1px solid var(--clr--primary);
 }
+
 .educationData--input-dates,
 .experienceData--input-dates,
 .projectData--input-dates {
 	display: flex;
 	justify-content: space-between;
 	gap: 1em;
-	/* border: 1px solid red; */
 }
 
 .educationData--input-dates > div,
@@ -242,25 +236,27 @@ header input {
 }
 
 /* buttons */
-.btn-cancel-skillName {
+.btn-cancel-skill-name {
 	position: absolute;
 	color: #90938f;
 	right: 0;
 	top: 1px;
 	display: none;
 }
-.skills-input-container:hover .btn-cancel-skillName {
+
+.skills-input-container:hover .btn-cancel-skill-name {
 	display: inline;
 	cursor: pointer;
 }
-.btn-addSkill {
+
+.btn-add-skill {
 	cursor: pointer;
 	color: #7bb274;
 	margin-left: 0.25em;
 	margin-bottom: 0.4em;
 }
 
-.btn-addSection {
+.btn-add-section {
 	font-family: 'Lato', sans-serif;
 	font-weight: bold;
 	background-color: var(--clr--secondary);
@@ -271,12 +267,12 @@ header input {
 	margin-top: 1em;
 	cursor: pointer;
 }
-.btn-addSection:hover {
+.btn-add-section:hover {
 	background-color: var(--clr--accent);
 	color: var(--clr--primary);
-	/* border: 1px solid var(--clr--neutral); */
 }
-.btn-cancel-skillCategory,
+
+.btn-cancel-skill-category,
 .btn-cancel-education,
 .btn-cancel-experience,
 .btn-cancel-project {

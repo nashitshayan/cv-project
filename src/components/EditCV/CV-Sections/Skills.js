@@ -26,7 +26,7 @@ function Skills({
 								onChange={(e) => changeHandler(e, skillCategoryIndex)}
 							/>
 							<span
-								className='btn-cancel-skillCategory icon-cancel'
+								className='btn-cancel-skill-category icon-cancel'
 								onClick={(e) =>
 									deleteSkillCategory(e, skillCategoryIndex)
 								}></span>
@@ -48,7 +48,7 @@ function Skills({
 											}
 										/>
 										<span
-											className='btn-cancel-skillName icon-cancel'
+											className='btn-cancel-skill-name icon-cancel'
 											onClick={(e) =>
 												deleteSkill(e, skillCategoryIndex, skillIndex)
 											}></span>
@@ -56,7 +56,7 @@ function Skills({
 								);
 							})}
 							<span
-								className='btn-addSkill'
+								className='btn-add-skill'
 								onClick={(e) => addSkill(e, skillCategoryIndex)}>
 								<i className='icon-plus'></i>
 							</span>
@@ -65,7 +65,7 @@ function Skills({
 				);
 			})}
 
-			<button onClick={addSkillCategory} className='btn-addSection'>
+			<button onClick={addSkillCategory} className='btn-add-section'>
 				Add Skill Category
 			</button>
 		</div>

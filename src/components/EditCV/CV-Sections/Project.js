@@ -56,7 +56,7 @@ function Project({ projectData, changeHandler, addProject, deleteProject }) {
 					</div>
 				);
 			})}
-			<button onClick={addProject} className='btn-addSection'>
+			<button onClick={addProject} className='btn-add-section'>
 				Add project
 			</button>
 		</div>
