@@ -3,45 +3,59 @@ import { useState, useEffect } from 'react';
 import EditableCV from './components/EditCV/EditableCV';
 import PreviewCV from './components/DisplayCV/PreviewCV';
 import Footer from './components/Footer';
-
+import { db } from './firebase';
+import {
+	doc,
+	collection,
+	setDoc,
+	TimeStamp,
+	onSnapshot,
+	query,
+	orderBy,
+	QuerySnapshot,
+	addDoc,
+	getDocs,
+	updateDoc,
+} from 'firebase/firestore';
+import { useDebounce } from './useDebounce';
 function App() {
 	//localStorage.clear();
 
 	//get data from localstorage, if no data then set initial value
-	const getInitialHeaderData = () => {
-		const headerDataFromLocalStorage = JSON.parse(
-			localStorage.getItem('headerData'),
-		);
-		//console.log(headerDataFromLocalStorage);
-		return headerDataFromLocalStorage
-			? headerDataFromLocalStorage
-			: {
-					name: '',
-					title: '',
-			  };
-	};
+	// const getInitialHeaderData = () => {
+	// 	const headerDataFromLocalStorage = JSON.parse(
+	// 		localStorage.getItem('headerData'),
+	// 	);
+	// 	//console.log(headerDataFromLocalStorage);
+	// 	return headerDataFromLocalStorage
+	// 		? headerDataFromLocalStorage
+	// 		: {
+	// 				name: '',
+	// 				title: '',
+	// 		  };
+	// };
 
-	const getInitialPersonalData = () => {
-		const personalDataFromLocalStorage = JSON.parse(
-			localStorage.getItem('personalData'),
-		);
-		return personalDataFromLocalStorage
-			? personalDataFromLocalStorage
-			: {
-					gender: '',
-					dateOfBirth: '',
-					phone: '',
-					email: '',
-					website: '',
-					location: '',
-			  };
-	};
-	const getInitialSkillsData = () => {
-		const skillsDataFromLocalStorage = JSON.parse(
-			localStorage.getItem('skillsData'),
-		);
-		return skillsDataFromLocalStorage ? skillsDataFromLocalStorage : [];
-	};
+	// const getInitialPersonalData = () => {
+	// 	const personalDataFromLocalStorage = JSON.parse(
+	// 		localStorage.getItem('personalData'),
+	// 	);
+	// 	return personalDataFromLocalStorage
+	// 		? personalDataFromLocalStorage
+	// 		: {
+	// 				gender: '',
+	// 				dateOfBirth: '',
+	// 				phone: '',
+	// 				email: '',
+	// 				website: '',
+	// 				location: '',
+	// 		  };
+	// };
+	// const getInitialSkillsData = () => {
+	// 	const skillsDataFromLocalStorage = JSON.parse(
+	// 		localStorage.getItem('skillsData'),
+	// 	);
+	// 	return skillsDataFromLocalStorage ? skillsDataFromLocalStorage : [];
+	// };
 	const getInitialObjectiveData = () => {
 		const objectiveDataFromLocalStorage = JSON.parse(
 			localStorage.getItem('objectiveData'),
@@ -69,14 +83,33 @@ function App() {
 
 	const getInitialIsEdit = () => {
 		const isEditFromLocalStorage = JSON.parse(localStorage.getItem('isEdit'));
-		console.log(isEditFromLocalStorage);
 		return isEditFromLocalStorage !== null ? isEditFromLocalStorage : true;
 	};
 
 	// setting initial states
-	const [headerData, setHeaderData] = useState(getInitialHeaderData);
-	const [personalData, setPersonalData] = useState(getInitialPersonalData);
-	const [skillsData, setSkillsData] = useState(getInitialSkillsData);
+	const initialHeaderData = { name: '', title: '' };
+	const [headerData, setHeaderData] = useState({});
+	const initialPersonalData = {
+		gender: '',
+		dateOfBirth: '',
+		phone: '',
+		email: '',
+		website: '',
+		location: '',
+	};
+	const [personalData, setPersonalData] = useState(initialPersonalData);
+
+	const initialSkillsData = [
+		{
+			title: '',
+			skills: [
+				{
+					skillName: '',
+				},
+			],
+		},
+	];
+	const [skillsData, setSkillsData] = useState(initialSkillsData);
 	const [objectiveData, setObjectiveData] = useState(getInitialObjectiveData);
 
 	const [educationData, setEducationData] = useState(getInitialEducationData);
@@ -87,34 +120,34 @@ function App() {
 	const [projectData, setProjectData] = useState(getInitialProjectData);
 	const [isEdit, setIsEdit] = useState(getInitialIsEdit);
 
-	//set data to local storage;
+	//get realtime db data
 	useEffect(() => {
-		localStorage.setItem('headerData', JSON.stringify(headerData));
-	}, [headerData]);
-	useEffect(() => {
-		localStorage.setItem('personalData', JSON.stringify(personalData));
-	}, [personalData]);
-	useEffect(() => {
-		localStorage.setItem('skillsData', JSON.stringify(skillsData));
-	}, [skillsData]);
-	useEffect(() => {
-		localStorage.setItem('objectiveData', JSON.stringify(objectiveData));
-	}, [objectiveData]);
-	useEffect(() => {
-		localStorage.setItem('educationData', JSON.stringify(educationData));
-	}, [educationData]);
-	useEffect(() => {
-		localStorage.setItem('experienceData', JSON.stringify(experienceData));
-	}, [experienceData]);
-	useEffect(() => {
-		localStorage.setItem('projectData', JSON.stringify(projectData));
-	}, [projectData]);
+		onSnapshot(doc(db, 'CV-App', 'headerData'), (doc) => {
+			const fetchedHeaderData = { ...initialHeaderData, ...doc.data() };
+			setHeaderData(fetchedHeaderData);
+		});
+		onSnapshot(doc(db, 'CV-App', 'personalData'), (doc) => {
+			const fetchedPersonalData = { ...initialPersonalData, ...doc.data() };
+			setPersonalData(fetchedPersonalData);
+		});
+		onSnapshot(doc(db, 'CV-App', 'skillsData'), (doc) => {
+			//console.log(doc.data().skillsData);
+			const fetchedSkillslData = doc.data().skillsData;
+			setSkillsData(fetchedSkillslData);
+		});
+	}, []);
 
-	useEffect(() => {
-		localStorage.setItem('isEdit', JSON.stringify(isEdit));
-	}, [isEdit]);
-
-	// event handlers
+	//set data to db
+	async function setToDB(data, docName) {
+		//console.log(data);
+		data = Array.isArray(data) ? { [docName]: data } : data;
+		try {
+			await setDoc(doc(db, 'CV-App', docName), data, { merge: true });
+		} catch (err) {
+			alert(err);
+		}
+	}
+	// Handling Header Data
 	const onHeaderDataChange = (e) => {
 		let { name, value } = e.target;
 		setHeaderData((prevHeaderData) => ({
@@ -122,6 +155,23 @@ function App() {
 			[name]: value,
 		}));
 	};
+	const debHeaderData = useDebounce(JSON.stringify(headerData), 1000);
+	// const debouncedHeaderName = useDebounce(headerData.name, 1000);
+	// const debouncedHeaderTitle = useDebounce(headerData.title, 1000);
+	// useEffect(() => {
+	// 	const data = { name: debouncedHeaderName, title: debouncedHeaderTitle };
+	// 	console.log('inside effect', data);
+	// 	if (debouncedHeaderName || debouncedHeaderTitle) {
+	// 		setToDB(data, 'headerData');
+	// 	}
+	// }, [debouncedHeaderName, debouncedHeaderTitle]);
+	useEffect(() => {
+		//const data = { name: debouncedHeaderName, title: debouncedHeaderTitle };
+		//	console.log('inside effect', debHeaderData);
+		setToDB(JSON.parse(debHeaderData), 'headerData');
+	}, [debHeaderData]);
+
+	//Handling Personal Data
 	const onPersonalDataChange = (e) => {
 		let { name, value } = e.target;
 		setPersonalData((prevPersonalData) => ({
@@ -130,6 +180,41 @@ function App() {
 		}));
 	};
 
+	const debouncedGender = useDebounce(personalData.gender, 1000);
+	const debouncedDOB = useDebounce(personalData.dateOfBirth, 1000);
+	const debouncedPhone = useDebounce(personalData.phone, 1000);
+	const debouncedEmail = useDebounce(personalData.email, 1000);
+	const debouncedWebsite = useDebounce(personalData.website, 1000);
+	const debouncedLocation = useDebounce(personalData.location, 1000);
+	useEffect(() => {
+		const data = {
+			gender: debouncedGender,
+			dateOfBirth: debouncedDOB,
+			phone: debouncedPhone,
+			email: debouncedEmail,
+			website: debouncedWebsite,
+			location: debouncedLocation,
+		};
+		if (
+			debouncedGender ||
+			debouncedDOB ||
+			debouncedEmail ||
+			debouncedPhone ||
+			debouncedWebsite ||
+			debouncedLocation
+		) {
+			setToDB(data, 'personalData');
+		}
+	}, [
+		debouncedGender,
+		debouncedDOB,
+		debouncedEmail,
+		debouncedPhone,
+		debouncedWebsite,
+		debouncedLocation,
+	]);
+
+	//handling skillsData
 	const onSkillsDataChange = (e, skillCategoryID, skillID) => {
 		let { name, value, className } = e.target;
 		let property = className === 'skills' ? className : name;
@@ -230,6 +315,18 @@ function App() {
 		});
 	};
 
+	const debouncedSkillsData = useDebounce(JSON.stringify(skillsData), 1000);
+
+	useEffect(() => {
+		if (debouncedSkillsData)
+			setToDB(JSON.parse(debouncedSkillsData), 'skillsData');
+		//console.log(debouncedSkillsData);
+	}, [debouncedSkillsData]);
+	// useEffect(() => {
+	// 	if (skillsData) setToDB(skillsData, 'skillsData');
+	// }, [skillsData]);
+
+	// handling objective data
 	const onObjectiveDataChange = (e) => {
 		let { value } = e.target;
 		setObjectiveData(value);
@@ -430,3 +527,39 @@ function App() {
 }
 
 export default App;
+
+//set data to local storage;
+// useEffect(() => {
+// 	localStorage.setItem('headerData', JSON.stringify(headerData));
+// }, [headerData]);
+// useEffect(() => {
+// 	localStorage.setItem('personalData', JSON.stringify(personalData));
+// }, [personalData]);
+// useEffect(() => {
+// 	localStorage.setItem('skillsData', JSON.stringify(skillsData));
+// }, [skillsData]);
+// useEffect(() => {
+// 	localStorage.setItem('objectiveData', JSON.stringify(objectiveData));
+// }, [objectiveData]);
+// useEffect(() => {
+// 	localStorage.setItem('educationData', JSON.stringify(educationData));
+// }, [educationData]);
+// useEffect(() => {
+// 	localStorage.setItem('experienceData', JSON.stringify(experienceData));
+// }, [experienceData]);
+// useEffect(() => {
+// 	localStorage.setItem('projectData', JSON.stringify(projectData));
+// }, [projectData]);
+
+// useEffect(() => {
+// 	localStorage.setItem('isEdit', JSON.stringify(isEdit));
+// }, [isEdit]);
+
+//deboucning the whole state object
+// const debouncedHeaderData = useDebounce(headerData, 1000);
+// useEffect(() => {
+// 	//	console.log(debouncedHeaderData);
+// 	if (debouncedHeaderData) {
+// 		setToDB(debouncedHeaderData, 'headerData');
+// 	}
+// }, [debouncedHeaderData.name, debouncedHeaderData.title]);

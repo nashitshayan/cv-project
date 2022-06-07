@@ -1,4 +1,5 @@
 export default function Header({ name, title, changeHandler }) {
+	//console.log('name: ', name, 'title: ', title);
 	return (
 		<header>
 			<div className='input-row'>
@@ -6,7 +7,7 @@ export default function Header({ name, title, changeHandler }) {
 				<input
 					type='text'
 					placeholder='enter your name'
-					className='header' //header because this is used to update the state and the property name there is 'header'
+					className='headerData'
 					id='header--input-name'
 					name='name'
 					value={name}
@@ -19,7 +20,7 @@ export default function Header({ name, title, changeHandler }) {
 				<input
 					type='text'
 					placeholder='enter your job title'
-					className='header'
+					className='headerData'
 					id='header--input-title'
 					name='title'
 					value={title}
