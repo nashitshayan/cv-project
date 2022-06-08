@@ -92,7 +92,6 @@ function App() {
 	useEffect(() => {
 		onSnapshot(doc(db, 'CV-App', 'headerData'), (doc) => {
 			const fetchedHeaderData = { ...initialHeaderData, ...doc.data() };
-			//	console.log('snap heade', doc.data());
 			setHeaderData(fetchedHeaderData);
 		});
 		onSnapshot(doc(db, 'CV-App', 'personalData'), (doc) => {
@@ -100,7 +99,6 @@ function App() {
 			setPersonalData(fetchedPersonalData);
 		});
 		onSnapshot(doc(db, 'CV-App', 'skillsData'), (doc) => {
-			//console.log(doc.data().skillsData);
 			const fetchedSkillslData = doc.data().skillsData;
 			setSkillsData(fetchedSkillslData);
 		});
@@ -144,6 +142,7 @@ function App() {
 	//set data to db
 	async function setToDB(data, docName) {
 		data = Array.isArray(data) ? { [docName]: data } : data;
+		//if (docName === 'personalData') console.log('setdb', data);
 		try {
 			await setDoc(doc(db, 'CV-App', docName), data, { merge: true });
 		} catch (err) {
@@ -160,28 +159,12 @@ function App() {
 		}));
 	};
 
-	// const debouncedHeaderName = useDebounce(headerData.name, 1000);
-	// const debouncedHeaderTitle = useDebounce(headerData.title, 1000);
-	// useEffect(() => {
-	// 	const data = { name: debouncedHeaderName, title: debouncedHeaderTitle };
-	// 	console.log('inside effect', data);
-	// 	if (debouncedHeaderName || debouncedHeaderTitle) {
-	// 		console.log('inside effect two', data);
-	// 		setToDB(data, 'headerData');
-	// 	}
-	// }, [debouncedHeaderName, debouncedHeaderTitle]);
-
-	const debHeaderData = useDebounce(JSON.stringify(headerData), 1000);
+	const debouncedHeaderData = useDebounce(JSON.stringify(headerData), 1000);
 
 	useEffect(() => {
-		const data = JSON.parse(debHeaderData);
-		//console.log('inside effect', data);
-
-		if (data.name || data.title) {
-			console.log('inside effect two', data);
-			setToDB(data, 'headerData');
-		}
-	}, [debHeaderData]);
+		const data = JSON.parse(debouncedHeaderData);
+		if (data.name || data.title) setToDB(data, 'headerData');
+	}, [debouncedHeaderData]);
 
 	//Handling Personal Data
 	const onPersonalDataChange = (e) => {
@@ -192,39 +175,21 @@ function App() {
 		}));
 	};
 
-	const debouncedGender = useDebounce(personalData.gender, 1000);
-	const debouncedDOB = useDebounce(personalData.dateOfBirth, 1000);
-	const debouncedPhone = useDebounce(personalData.phone, 1000);
-	const debouncedEmail = useDebounce(personalData.email, 1000);
-	const debouncedWebsite = useDebounce(personalData.website, 1000);
-	const debouncedLocation = useDebounce(personalData.location, 1000);
+	const debouncedPersonalData = useDebounce(JSON.stringify(personalData));
 	useEffect(() => {
-		const data = {
-			gender: debouncedGender,
-			dateOfBirth: debouncedDOB,
-			phone: debouncedPhone,
-			email: debouncedEmail,
-			website: debouncedWebsite,
-			location: debouncedLocation,
-		};
+		const data = JSON.parse(debouncedPersonalData);
+		//console.log('effectpersonal', data);
 		if (
-			debouncedGender ||
-			debouncedDOB ||
-			debouncedEmail ||
-			debouncedPhone ||
-			debouncedWebsite ||
-			debouncedLocation
+			data.gender ||
+			data.dateOfBirth ||
+			data.phone ||
+			data.email ||
+			data.website ||
+			data.location
 		) {
 			setToDB(data, 'personalData');
 		}
-	}, [
-		debouncedGender,
-		debouncedDOB,
-		debouncedEmail,
-		debouncedPhone,
-		debouncedWebsite,
-		debouncedLocation,
-	]);
+	}, [debouncedPersonalData]);
 
 	//handling skillsData
 	const onSkillsDataChange = (e, skillCategoryID, skillID) => {
