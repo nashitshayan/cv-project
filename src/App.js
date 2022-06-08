@@ -16,8 +16,10 @@ import {
 	addDoc,
 	getDocs,
 	updateDoc,
+	getDoc,
 } from 'firebase/firestore';
 import { useDebounce } from './useDebounce';
+import { async } from '@firebase/util';
 function App() {
 	//localStorage.clear();
 
@@ -81,14 +83,33 @@ function App() {
 		return projectDataFromLocalStorage ? projectDataFromLocalStorage : [];
 	};
 
-	const getInitialIsEdit = () => {
-		const isEditFromLocalStorage = JSON.parse(localStorage.getItem('isEdit'));
-		return isEditFromLocalStorage !== null ? isEditFromLocalStorage : true;
-	};
+	// const getInitialIsEdit = () => {
+	// 	const isEditFromLocalStorage = JSON.parse(localStorage.getItem('isEdit'));
+	// 	return isEditFromLocalStorage !== null ? isEditFromLocalStorage : true;
+	// };
+
+	//get realtime db data
+	useEffect(() => {
+		onSnapshot(doc(db, 'CV-App', 'headerData'), (doc) => {
+			const fetchedHeaderData = { ...initialHeaderData, ...doc.data() };
+			//	console.log('snap heade', doc.data());
+			setHeaderData(fetchedHeaderData);
+		});
+		onSnapshot(doc(db, 'CV-App', 'personalData'), (doc) => {
+			const fetchedPersonalData = { ...initialPersonalData, ...doc.data() };
+			setPersonalData(fetchedPersonalData);
+		});
+		onSnapshot(doc(db, 'CV-App', 'skillsData'), (doc) => {
+			//console.log(doc.data().skillsData);
+			const fetchedSkillslData = doc.data().skillsData;
+			setSkillsData(fetchedSkillslData);
+		});
+	}, []);
 
 	// setting initial states
 	const initialHeaderData = { name: '', title: '' };
-	const [headerData, setHeaderData] = useState({});
+	const [headerData, setHeaderData] = useState(initialHeaderData);
+	//useEffect(() => console.log('header', headerData), [headerData]);
 	const initialPersonalData = {
 		gender: '',
 		dateOfBirth: '',
@@ -118,28 +139,10 @@ function App() {
 	);
 
 	const [projectData, setProjectData] = useState(getInitialProjectData);
-	const [isEdit, setIsEdit] = useState(getInitialIsEdit);
-
-	//get realtime db data
-	useEffect(() => {
-		onSnapshot(doc(db, 'CV-App', 'headerData'), (doc) => {
-			const fetchedHeaderData = { ...initialHeaderData, ...doc.data() };
-			setHeaderData(fetchedHeaderData);
-		});
-		onSnapshot(doc(db, 'CV-App', 'personalData'), (doc) => {
-			const fetchedPersonalData = { ...initialPersonalData, ...doc.data() };
-			setPersonalData(fetchedPersonalData);
-		});
-		onSnapshot(doc(db, 'CV-App', 'skillsData'), (doc) => {
-			//console.log(doc.data().skillsData);
-			const fetchedSkillslData = doc.data().skillsData;
-			setSkillsData(fetchedSkillslData);
-		});
-	}, []);
+	const [isEdit, setIsEdit] = useState(true);
 
 	//set data to db
 	async function setToDB(data, docName) {
-		//console.log(data);
 		data = Array.isArray(data) ? { [docName]: data } : data;
 		try {
 			await setDoc(doc(db, 'CV-App', docName), data, { merge: true });
@@ -147,6 +150,7 @@ function App() {
 			alert(err);
 		}
 	}
+
 	// Handling Header Data
 	const onHeaderDataChange = (e) => {
 		let { name, value } = e.target;
@@ -155,20 +159,28 @@ function App() {
 			[name]: value,
 		}));
 	};
-	const debHeaderData = useDebounce(JSON.stringify(headerData), 1000);
+
 	// const debouncedHeaderName = useDebounce(headerData.name, 1000);
 	// const debouncedHeaderTitle = useDebounce(headerData.title, 1000);
 	// useEffect(() => {
 	// 	const data = { name: debouncedHeaderName, title: debouncedHeaderTitle };
 	// 	console.log('inside effect', data);
 	// 	if (debouncedHeaderName || debouncedHeaderTitle) {
+	// 		console.log('inside effect two', data);
 	// 		setToDB(data, 'headerData');
 	// 	}
 	// }, [debouncedHeaderName, debouncedHeaderTitle]);
+
+	const debHeaderData = useDebounce(JSON.stringify(headerData), 1000);
+
 	useEffect(() => {
-		//const data = { name: debouncedHeaderName, title: debouncedHeaderTitle };
-		//	console.log('inside effect', debHeaderData);
-		setToDB(JSON.parse(debHeaderData), 'headerData');
+		const data = JSON.parse(debHeaderData);
+		//console.log('inside effect', data);
+
+		if (data.name || data.title) {
+			console.log('inside effect two', data);
+			setToDB(data, 'headerData');
+		}
 	}, [debHeaderData]);
 
 	//Handling Personal Data
