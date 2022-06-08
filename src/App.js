@@ -58,12 +58,12 @@ function App() {
 	// 	);
 	// 	return skillsDataFromLocalStorage ? skillsDataFromLocalStorage : [];
 	// };
-	const getInitialObjectiveData = () => {
-		const objectiveDataFromLocalStorage = JSON.parse(
-			localStorage.getItem('objectiveData'),
-		);
-		return objectiveDataFromLocalStorage ? objectiveDataFromLocalStorage : '';
-	};
+	// const getInitialObjectiveData = () => {
+	// 	const objectiveDataFromLocalStorage = JSON.parse(
+	// 		localStorage.getItem('objectiveData'),
+	// 	);
+	// 	return objectiveDataFromLocalStorage ? objectiveDataFromLocalStorage : '';
+	// };
 	const getInitialEducationData = () => {
 		const educationDataFromLocalStorage = JSON.parse(
 			localStorage.getItem('educationData'),
@@ -99,7 +99,9 @@ function App() {
 			setPersonalData(fetchedPersonalData);
 		});
 		onSnapshot(doc(db, 'CV-App', 'skillsData'), (doc) => {
-			const fetchedSkillslData = doc.data().skillsData;
+			const fetchedSkillslData = doc.data()
+				? doc.data().skillsData
+				: initialSkillsData;
 			setSkillsData(fetchedSkillslData);
 		});
 	}, []);
@@ -129,7 +131,7 @@ function App() {
 		},
 	];
 	const [skillsData, setSkillsData] = useState(initialSkillsData);
-	const [objectiveData, setObjectiveData] = useState(getInitialObjectiveData);
+	const [objectiveData, setObjectiveData] = useState('');
 
 	const [educationData, setEducationData] = useState(getInitialEducationData);
 	const [experienceData, setExperienceData] = useState(
@@ -178,7 +180,6 @@ function App() {
 	const debouncedPersonalData = useDebounce(JSON.stringify(personalData));
 	useEffect(() => {
 		const data = JSON.parse(debouncedPersonalData);
-		//console.log('effectpersonal', data);
 		if (
 			data.gender ||
 			data.dateOfBirth ||
@@ -295,13 +296,29 @@ function App() {
 	const debouncedSkillsData = useDebounce(JSON.stringify(skillsData), 1000);
 
 	useEffect(() => {
-		if (debouncedSkillsData)
-			setToDB(JSON.parse(debouncedSkillsData), 'skillsData');
-		//console.log(debouncedSkillsData);
+		const data = JSON.parse(debouncedSkillsData);
+
+		//when there is at least one element in the array, check to see if the title of the first element is empty, if it is, then do not update the db otherwise update it.
+		/* 
+		NOTE:
+		This condition is put in place to stop the db being set to initialSkillsData object on every reload. 
+
+		BUG: 
+		So by doing this, it has become necessary for there to be a title on the first element of the array for any changes to its nested array being updated in the db.
+		So if anyone erases the title on the first skill Category, NO change will be updated to db and on reload the SAME data as before will be rendered. 
+		Also, after erasing the title on the first category, any changes made to the skills array (adding, deleting or updating the skill names) will ALSO NOT be updated to db.
+
+		Is this a bug or a feature? IDK. 
+		I guess anyone with the right mind would add the cateogory title before they start adding skill names. But if anyone does, then on reload their data will get lost :/
+		*/
+		if (data.length > 0 && data[0].title) {
+			setToDB(data, 'skillsData');
+		}
+		//if the array is empty, then update DB (this will be the case when the user removes all skill categories)
+		if (data.length === 0) {
+			setToDB(data, 'skillsData');
+		}
 	}, [debouncedSkillsData]);
-	// useEffect(() => {
-	// 	if (skillsData) setToDB(skillsData, 'skillsData');
-	// }, [skillsData]);
 
 	// handling objective data
 	const onObjectiveDataChange = (e) => {
