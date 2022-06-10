@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-
+import { getAuth } from 'firebase/auth';
+import firebase from 'firebase/compat/app';
+//configure fireabase
 const firebaseConfig = {
 	apiKey: 'AIzaSyDoy7e2_nMi6Qzkbzz6aU7sxpljjES8NDU',
 	authDomain: 'cv-maker-78b01.firebaseapp.com',
@@ -12,5 +14,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-export { db };
+export { db, app, auth };
