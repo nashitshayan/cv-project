@@ -156,7 +156,6 @@ function Home() {
 			await setDoc(doc(db, 'users', user.uid, 'CV-Data', docName), data, {
 				merge: true,
 			});
-			//await setDoc(doc(db, 'CV-App', docName), data, { merge: true });
 		} catch (err) {
 			alert(err);
 		}
