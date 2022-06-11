@@ -8,7 +8,7 @@ function Experience({
 }) {
 	return (
 		<div className='experienceData section'>
-			<h3>EXPERIENCE :</h3>
+			<h3 className='bold-700'>EXPERIENCE :</h3>
 			{experienceData.map((experienceItem, experienceIndex) => {
 				return (
 					<div className='experienceData-input' key={experienceIndex}>

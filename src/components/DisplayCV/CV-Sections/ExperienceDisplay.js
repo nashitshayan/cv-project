@@ -2,7 +2,7 @@ import { convertDate } from '../../../convertDate';
 export default function ExperienceDisplay({ experienceData }) {
 	return (
 		<div className='experienceDisplay displaySection'>
-			<h3>EXPERIENCE</h3>
+			<h3 className='bold-700'>EXPERIENCE</h3>
 			{experienceData.map((experienceItem, experienceIndex) => {
 				return (
 					<div key={experienceIndex} className='experienceItem'>
