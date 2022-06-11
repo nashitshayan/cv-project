@@ -15,6 +15,7 @@ const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
 	const [user, setUser] = useState('');
+	const [isPending, setIsPending] = useState(true);
 	function signUp(email, password) {
 		return createUserWithEmailAndPassword(auth, email, password);
 	}
@@ -37,9 +38,16 @@ export function UserAuthContextProvider({ children }) {
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 			setUser(currentUser);
+			setIsPending(false);
 		});
 		return () => unsubscribe();
 	}, []);
+	if (isPending)
+		return (
+			<div className='loading-wrapper'>
+				<span>Loading...</span>
+			</div>
+		);
 	return (
 		<userAuthContext.Provider
 			value={{

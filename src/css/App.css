@@ -561,3 +561,17 @@ ul.icon li {
 .auth-wrapper a:hover {
 	color: var(--clr--primary);
 }
+
+/* loading screen */
+
+.loading-wrapper {
+	font-family: 'Lato', sans-serif;
+	font-size: 2rem;
+	font-weight: bold;
+	height: 100vh;
+	background-color: var(--clr--secondary);
+	color: var(--clr--neutral);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
