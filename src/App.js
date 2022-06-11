@@ -10,12 +10,6 @@ import PasswordReset from './components/PasswordReset';
 import Home from './components/Home';
 import ProtectedRoute from './components/ProtectedRoute';
 function App() {
-	const { user } = useUserAuth();
-	let navigate = useNavigate();
-	//if user is signed in, navigate to home
-	useEffect(() => {
-		if (user) navigate('/home');
-	}, [user]);
 	return (
 		<div>
 			<Routes>
