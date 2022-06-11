@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
@@ -9,14 +9,12 @@ function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
-	const { signIn, googleSignIn, setAuthPersistence } = useUserAuth();
+	const { user, signIn, googleSignIn, setAuthPersistence } = useUserAuth();
 	const navigate = useNavigate();
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError('');
 		try {
-			const res = await setAuthPersistence();
-			console.log(res);
 			await signIn(email, password);
 			navigate('/home');
 		} catch (err) {
@@ -32,6 +30,7 @@ function Login() {
 			setError(err.message);
 		}
 	};
+
 	return (
 		<div className='auth-wrapper'>
 			<div className='p-4 box '>
