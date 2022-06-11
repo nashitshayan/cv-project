@@ -8,14 +8,14 @@ function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
-	const { user, signIn, googleSignIn, setAuthPersistence } = useUserAuth();
+	const { signIn, googleSignIn } = useUserAuth();
 	const navigate = useNavigate();
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError('');
 		try {
 			await signIn(email, password);
-			navigate('/home');
+			navigate('/cv-project/home');
 		} catch (err) {
 			setError(err.message);
 		}
@@ -24,7 +24,7 @@ function Login() {
 		e.preventDefault();
 		try {
 			await googleSignIn();
-			navigate('/home');
+			navigate('/cv-project/home');
 		} catch (err) {
 			setError(err.message);
 		}
@@ -59,7 +59,7 @@ function Login() {
 					</div>
 				</Form>
 				<div className='mt-2'>
-					<Link to='/password-reset'>Forgot Password</Link>
+					<Link to='/cv-project/password-reset'>Forgot Password</Link>
 				</div>
 				<hr />
 				<div>
@@ -71,7 +71,7 @@ function Login() {
 				</div>
 			</div>
 			<div className='p-4 box mt-3 text-center'>
-				Don't have an account? <Link to='/signup'>Sign Up</Link>
+				Don't have an account? <Link to='/cv-project/signup'>Sign Up</Link>
 			</div>
 		</div>
 	);

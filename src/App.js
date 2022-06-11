@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Container, Col, Row } from 'react-bootstrap';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PasswordReset from './components/PasswordReset';
@@ -10,11 +9,11 @@ function App() {
 	return (
 		<div>
 			<Routes>
-				<Route path='/' element={<Login />} />
-				<Route path='/signup' element={<SignUp />} />
-				<Route path='/password-reset' element={<PasswordReset />} />
+				<Route path='/cv-project' element={<Login />} />
+				<Route path='/cv-project/signup' element={<SignUp />} />
+				<Route path='/cv-project/password-reset' element={<PasswordReset />} />
 				<Route
-					path='/home'
+					path='/cv-project/home'
 					element={
 						<ProtectedRoute>
 							<Home />
@@ -23,26 +22,6 @@ function App() {
 				/>
 			</Routes>
 		</div>
-		// <Container>
-		// 	<Row>
-		// 		<Col>
-		// 			<UserAuthContextProvider>
-		// 				<Routes>
-		// 					<Route path='/' element={<Login />} />
-		// 					<Route path='/signup' element={<SignUp />} />
-		// 					<Route
-		// 						path='/home'
-		// 						element={
-		// 							<ProtectedRoute>
-		// 								<Home />
-		// 							</ProtectedRoute>
-		// 						}
-		// 					/>
-		// 				</Routes>
-		// 			</UserAuthContextProvider>
-		// 		</Col>
-		// 	</Row>
-		// </Container>
 	);
 }
 

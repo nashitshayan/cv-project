@@ -4,7 +4,7 @@ import { useUserAuth } from '../context/UserAuthContext';
 function ProtectedRoute({ children }) {
 	let { user } = useUserAuth();
 	if (!user) {
-		return <Navigate to='/' />;
+		return <Navigate to='/cv-project/' />;
 	}
 	return children;
 }
