@@ -1,20 +1,18 @@
 {
   "files": {
-    "main.css": "/cv-project/static/css/main.c37406ae.css",
-    "main.js": "/cv-project/static/js/main.8ced530a.js",
-    "static/js/787.34a20539.chunk.js": "/cv-project/static/js/787.34a20539.chunk.js",
+    "main.css": "/cv-project/static/css/main.4ab1ec88.css",
+    "main.js": "/cv-project/static/js/main.fd27ca72.js",
     "static/media/fontello.eot?52449221": "/cv-project/static/media/fontello.8867ff67aaa51480c32d.eot",
     "static/media/fontello.ttf?52449221": "/cv-project/static/media/fontello.7a2d2497b81396bab724.ttf",
     "static/media/fontello.woff?52449221": "/cv-project/static/media/fontello.9fadae30a7fbcaefb462.woff",
     "static/media/fontello.svg?52449221": "/cv-project/static/media/fontello.e572ce80ff8a1c67646f.svg",
     "static/media/fontello.woff2?52449221": "/cv-project/static/media/fontello.5a3741a2aa473eeb1317.woff2",
     "index.html": "/cv-project/index.html",
-    "main.c37406ae.css.map": "/cv-project/static/css/main.c37406ae.css.map",
-    "main.8ced530a.js.map": "/cv-project/static/js/main.8ced530a.js.map",
-    "787.34a20539.chunk.js.map": "/cv-project/static/js/787.34a20539.chunk.js.map"
+    "main.4ab1ec88.css.map": "/cv-project/static/css/main.4ab1ec88.css.map",
+    "main.fd27ca72.js.map": "/cv-project/static/js/main.fd27ca72.js.map"
   },
   "entrypoints": [
-    "static/css/main.c37406ae.css",
-    "static/js/main.8ced530a.js"
+    "static/css/main.4ab1ec88.css",
+    "static/js/main.fd27ca72.js"
   ]
 }
