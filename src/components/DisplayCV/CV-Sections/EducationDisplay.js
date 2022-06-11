@@ -2,7 +2,7 @@ import { convertDate } from '../../../convertDate';
 export default function EducationDisplay({ educationData }) {
 	return (
 		<div className='educationDisplay displaySection'>
-			<h3>EDUCATION</h3>
+			<h3 className='bold-700'>EDUCATION</h3>
 			{educationData.map((educationItem, educationIndex) => {
 				return (
 					<div key={educationIndex} className='educationItem'>

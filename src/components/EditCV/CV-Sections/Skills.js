@@ -9,7 +9,7 @@ function Skills({
 }) {
 	return (
 		<div className=' skillsData section'>
-			<div className='skillsData-label'>SKILLS</div>
+			<h3 className='skillsData-label bold-700'>SKILLS</h3>
 			{skillsData.map((skillCategory, skillCategoryIndex) => {
 				return (
 					<div className='skillsData-input' key={skillCategoryIndex}>

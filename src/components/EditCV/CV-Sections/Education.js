@@ -8,7 +8,7 @@ function Education({
 }) {
 	return (
 		<div className='educationData section'>
-			<h3>EDUCATION :</h3>
+			<h3 className='bold-700'>EDUCATION :</h3>
 			{educationData.map((educationItem, educationIndex) => {
 				return (
 					<div className='educationData-input' key={educationIndex}>

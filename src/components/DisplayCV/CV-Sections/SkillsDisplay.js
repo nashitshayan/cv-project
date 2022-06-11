@@ -1,7 +1,7 @@
 export default function SkillsDisplay({ skillsData }) {
 	return (
 		<div className='skillsDisplay'>
-			<h3>SKILLS</h3>
+			<h3 className='bold-700'>SKILLS</h3>
 
 			{skillsData.map((skillCategoryItem, skillCategoryIndex) => {
 				return (

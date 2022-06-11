@@ -2,7 +2,7 @@ import { convertDate } from '../../../convertDate';
 export default function ProjectsDisplay({ projectData }) {
 	return (
 		<div className='projectDisplay displaySection'>
-			<h3>PROJECTS</h3>
+			<h3 className='bold-700'>PROJECTS</h3>
 			{projectData.map((projectItem, projectIndex) => {
 				return (
 					<div key={projectIndex} className='projectItem'>

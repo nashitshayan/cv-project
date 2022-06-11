@@ -1,7 +1,7 @@
 function Project({ projectData, changeHandler, addProject, deleteProject }) {
 	return (
 		<div className='projectData section'>
-			<h3>PROJECTS :</h3>
+			<h3 className='bold-700'>PROJECTS :</h3>
 			{projectData.map((projectItem, projectIndex) => {
 				return (
 					<div className='projectData-input' key={projectIndex}>
