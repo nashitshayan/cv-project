@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
-import './css/App.css';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Container, Col, Row } from 'react-bootstrap';
-import { useUserAuth } from './context/UserAuthContext';
-import './css/App.css';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PasswordReset from './components/PasswordReset';

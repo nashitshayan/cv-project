@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Form, Button, Alert } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function PasswordReset() {
 	const [email, setEmail] = useState('');
