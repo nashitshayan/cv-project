@@ -9,7 +9,7 @@ function Objective({ objectiveData, changeHandler }) {
 					placeholder='enter summary'
 					className='objective'
 					name='summary'
-					value={objectiveData}
+					value={objectiveData.summary}
 					onChange={changeHandler}></textarea>
 			</div>
 		</div>
