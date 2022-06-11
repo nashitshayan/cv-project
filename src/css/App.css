@@ -548,8 +548,13 @@ ul.icon li {
 	background-color: var(--clr--secondary);
 	color: var(--clr--neutral);
 	border-radius: 4px;
-	width: 25em;
+	max-width: 25em;
 	margin: 1em;
+}
+@media only screen and (min-width: 400px) {
+	.box {
+		width: 25em;
+	}
 }
 .g-btn {
 	width: 100% !important;
