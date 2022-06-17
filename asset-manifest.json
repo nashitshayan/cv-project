@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/cv-project/static/css/main.1ab99a73.css",
-    "main.js": "/cv-project/static/js/main.5f7e24c3.js",
-    "static/media/fontello.eot?52449221": "/cv-project/static/media/fontello.8867ff67aaa51480c32d.eot",
-    "static/media/fontello.ttf?52449221": "/cv-project/static/media/fontello.7a2d2497b81396bab724.ttf",
-    "static/media/fontello.woff?52449221": "/cv-project/static/media/fontello.9fadae30a7fbcaefb462.woff",
-    "static/media/fontello.svg?52449221": "/cv-project/static/media/fontello.e572ce80ff8a1c67646f.svg",
-    "static/media/fontello.woff2?52449221": "/cv-project/static/media/fontello.5a3741a2aa473eeb1317.woff2",
-    "index.html": "/cv-project/index.html",
-    "main.1ab99a73.css.map": "/cv-project/static/css/main.1ab99a73.css.map",
-    "main.5f7e24c3.js.map": "/cv-project/static/js/main.5f7e24c3.js.map"
+    "main.css": "/static/css/main.96c6f485.css",
+    "main.js": "/static/js/main.5f7e24c3.js",
+    "static/media/fontello.eot?52449221": "/static/media/fontello.8867ff67aaa51480c32d.eot",
+    "static/media/fontello.ttf?52449221": "/static/media/fontello.7a2d2497b81396bab724.ttf",
+    "static/media/fontello.woff?52449221": "/static/media/fontello.9fadae30a7fbcaefb462.woff",
+    "static/media/fontello.svg?52449221": "/static/media/fontello.e572ce80ff8a1c67646f.svg",
+    "static/media/fontello.woff2?52449221": "/static/media/fontello.5a3741a2aa473eeb1317.woff2",
+    "index.html": "/index.html",
+    "main.96c6f485.css.map": "/static/css/main.96c6f485.css.map",
+    "main.5f7e24c3.js.map": "/static/js/main.5f7e24c3.js.map"
   },
   "entrypoints": [
-    "static/css/main.1ab99a73.css",
+    "static/css/main.96c6f485.css",
     "static/js/main.5f7e24c3.js"
   ]
 }
